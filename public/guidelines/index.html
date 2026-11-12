@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+(function(){
+  if (location.protocol === 'file:') return;
+  var path = location.pathname;
+  if (/\/index\.html$/.test(path)) {
+    location.replace(path.replace(/index\.html$/, '') + location.search + location.hash);
+  } else if (/\.html$/.test(path)) {
+    location.replace(path.replace(/\/([^\/]+)\.html$/, '/$1/') + location.search + location.hash);
+  }
+})();
+</script>
+<title>Guidelines | CyberPro</title>
+<meta name="description" content="CyberPro program guidelines and important policies for learners.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://127.0.0.1:8000/guidelines/">
+<meta property="og:title" content="Guidelines | CyberPro">
+<meta property="og:description" content="CyberPro learner guidelines for cybersecurity programs, labs, mentorship, and practical training conduct.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://127.0.0.1:8000/guidelines/">
+<meta property="og:image" content="https://127.0.0.1:8000/assets/logo-mark.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://127.0.0.1:8000/assets/logo-mark.png">
+<meta name="theme-color" content="#050506">
+<link rel="icon" type="image/png" href="/assets/logo-mark.png">
+<link rel="apple-touch-icon" href="/assets/logo-mark.png">
+<link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://127.0.0.1:8000/"},{"@type":"ListItem","position":2,"name":"Guidelines","item":"https://127.0.0.1:8000/guidelines/"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site-pages.css">
+<style>
+
+
+
+@keyframes cyber-badge-pulse {
+  0%, 100% { opacity: 0.5; letter-spacing: 0.24em; }
+  50% { opacity: 0.95; letter-spacing: 0.28em; text-shadow: 0 0 10px rgba(57, 255, 20, 0.8); }
+}
+
+.footer-wordmark-wrap {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 48px 16px 36px !important;
+  margin-top: 32px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  user-select: none !important;
+  pointer-events: none !important;
+  background: radial-gradient(ellipse at 50% 60%, rgba(57, 255, 20, 0.06) 0%, rgba(5, 5, 7, 0) 70%) !important;
+  border-top: 1px solid rgba(57, 255, 20, 0.12) !important;
+}
+
+.footer-wordmark-wrap::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: min(600px, 80vw) !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, #39ff14, transparent) !important;
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.8) !important;
+}
+
+.wordmark-telemetry {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-family: 'Space Grotesk', monospace !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: #39ff14 !important;
+  letter-spacing: 0.24em !important;
+  margin-bottom: 14px !important;
+  animation: cyber-badge-pulse 4s ease-in-out infinite alternate !important;
+}
+
+.wordmark-telemetry .telemetry-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #39ff14 !important;
+  box-shadow: 0 0 8px #39ff14 !important;
+}
+
+.animated-cyberpro-wordmark {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(3.4rem, 11vw, 7.8rem) !important;
+  font-weight: 900 !important;
+  line-height: 0.95 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  letter-spacing: clamp(0.18em, 1.8vw, 0.28em) !important;
+  padding-left: clamp(0.18em, 1.8vw, 0.28em) !important; /* Visual center balance for letter-spacing */
+  
+  /* Precision holographic liquid-metal laser sheen */
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.35) 20%,
+    rgba(57, 255, 20, 0.85) 45%,
+    #ffffff 50%,
+    rgba(57, 255, 20, 0.85) 55%,
+    rgba(255, 255, 255, 0.35) 80%,
+    rgba(255, 255, 255, 0.15) 100%
+  ) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  
+  /* Surgical 1px razor-sharp cyber edge */
+  -webkit-text-stroke: 1px rgba(57, 255, 20, 0.45) !important;
+  
+  animation: cyberpro-laser-scan 5.5s linear infinite !important;
+  display: block !important;
+}
+
+.wordmark-subline {
+  margin-top: 14px !important;
+  font-family: 'Space Grotesk', monospace !important;
+  font-size: 9px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.35) !important;
+  letter-spacing: 0.3em !important;
+}
+</style>
+<style>
+/* ========================================================
+   ULTRA-TIER CYBERSECURITY BRAND SIGNATURE (MASTER CLASS)
+   ======================================================== */
+@keyframes cyberpro-sheen-glide {
+  0% {
+    background-position: 100% center;
+    filter: drop-shadow(0 0 16px rgba(57, 255, 20, 0.35));
+  }
+  50% {
+    background-position: 0% center;
+    filter: drop-shadow(0 0 30px rgba(57, 255, 20, 0.75)) drop-shadow(0 0 65px rgba(57, 255, 20, 0.3));
+  }
+  100% {
+    background-position: -100% center;
+    filter: drop-shadow(0 0 16px rgba(57, 255, 20, 0.35));
+  }
+}
+
+@keyframes cyberpro-glow-pulse {
+  0%, 100% {
+    opacity: 0.65;
+    text-shadow: 0 0 12px rgba(57, 255, 20, 0.4);
+    letter-spacing: 0.22em;
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(57, 255, 20, 0.9), 0 0 40px rgba(57, 255, 20, 0.4);
+    letter-spacing: 0.25em;
+  }
+}
+
+.footer-wordmark-wrap {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 52px 20px 42px !important;
+  margin-top: 36px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  user-select: none !important;
+  pointer-events: none !important;
+  background: radial-gradient(ellipse 65% 55% at 50% 65%, rgba(57, 255, 20, 0.08) 0%, rgba(5, 5, 7, 0) 72%) !important;
+  border-top: 1px solid rgba(57, 255, 20, 0.15) !important;
+}
+
+.footer-wordmark-wrap::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: min(720px, 85vw) !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent 0%, #39ff14 50%, transparent 100%) !important;
+  box-shadow: 0 0 16px rgba(57, 255, 20, 0.9) !important;
+}
+
+.wordmark-telemetry {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  font-family: 'Space Grotesk', monospace !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  color: #39ff14 !important;
+  letter-spacing: 0.22em !important;
+  margin-bottom: 16px !important;
+  animation: cyberpro-glow-pulse 3.5s ease-in-out infinite alternate !important;
+}
+
+.wordmark-telemetry .telemetry-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #39ff14 !important;
+  box-shadow: 0 0 10px #39ff14 !important;
+}
+
+.animated-cyberpro-wordmark {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(3.6rem, 12vw, 8.5rem) !important;
+  font-weight: 900 !important;
+  line-height: 0.95 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  letter-spacing: clamp(0.14em, 1.8vw, 0.24em) !important;
+  padding-left: clamp(0.14em, 1.8vw, 0.24em) !important;
+  
+  /* 100% Solid & Vibrant Everywhere - Liquid Obsidian & Cyber-Emerald */
+  background: linear-gradient(
+    115deg,
+    #FFFFFF 0%,
+    #D6FFD4 22%,
+    #39FF14 45%,
+    #FFFFFF 50%,
+    #39FF14 55%,
+    #D6FFD4 78%,
+    #FFFFFF 100%
+  ) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #ffffff !important;
+  
+  /* Razor-sharp precision contour */
+  -webkit-text-stroke: 1.2px rgba(57, 255, 20, 0.5) !important;
+  
+  /* Prismatic Sheen Sweep */
+  animation: cyberpro-sheen-glide 4.5s linear infinite !important;
+  display: block !important;
+}
+
+.wordmark-subline {
+  margin-top: 18px !important;
+  font-family: 'Space Grotesk', monospace !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+  letter-spacing: 0.28em !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+
+.wordmark-subline::before,
+.wordmark-subline::after {
+  content: "" !important;
+  display: inline-block !important;
+  width: 24px !important;
+  height: 1px !important;
+  background: rgba(57, 255, 20, 0.4) !important;
+}
+</style>
+</head>
+<body>
+<div class="nav-wrap"><nav class="nav" id="nav"><a class="brand" href="/"><img src="/assets/logo-mark.png" alt="" class="brand-logo">CYBERPRO</a><ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/programs">Programs</a></li>
+      <li><a href="/ccce">CCCE</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li class="nav-drop">
+        <button class="nav-drop-btn" type="button">Legal</button>
+        <div class="nav-drop-menu">
+          <a href="/privacy-policy/">Privacy Policy</a>
+          <a href="/terms-conditions/">Terms</a>
+          <a href="/cancellation-refund/">Refund Policy</a>
+          <a href="/shipping-policy/">Shipping Policy</a>
+          <a href="/guidelines/">Guidelines</a>
+        </div>
+      </li>
+    </ul><a href="/?login=1" class="btn btn-soft" target="_blank" rel="noopener" data-conversion="lms-login-header">LMS Login</a><button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><div class="nav-mobile-panel" id="navMobilePanel">
+      <a href="/">Home</a>
+      <a href="/programs">Programs</a>
+      <a href="/ccce">CCCE</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/?login=1" target="_blank" rel="noopener">LMS Login</a>
+      <span class="mobile-menu-label">Legal</span>
+      <div class="mobile-legal-grid"><a href="/privacy-policy/">Privacy</a><a href="/terms-conditions/">Terms</a><a href="/cancellation-refund/">Refund</a><a href="/shipping-policy/">Shipping</a><a href="/guidelines/">Guidelines</a></div>
+    </div></nav></div>
+<header class="page-hero" data-page="guidelines"><div class="hero-inner" data-label="RULES"><div><p class="section-kicker">Legal</p><h1>Program <span class="accent">guidelines.</span></h1><p class="lead">Important learner policies around refunds, LMS access, attendance, certification, payments, content usage, and program conduct.</p></div><aside class="hero-card"><span class="mini-label">Document</span><p>Important policies for CyberPro training participants.</p><div class="hero-points"><span>Program rules <small>14</small></span><span>Access policy <small>LMS</small></span><span>Certification <small>Exam</small></span></div></aside></div></header>
+<main class="section"><div class="legal-shell"><aside class="legal-toc"><h3>Legal pages</h3><a href="/privacy-policy/">Privacy Policy <small>01</small></a><a href="/terms-conditions/">Terms <small>02</small></a><a href="/cancellation-refund/">Refund Policy <small>03</small></a><a href="/shipping-policy/">Shipping Policy <small>04</small></a><a class="active" href="/guidelines/">Guidelines <small>05</small></a></aside><article class="legal-document"><div class="legal-meta"><span>Important policies</span><span>Training program</span></div>
+<h2>Important Policies</h2>
+<h3>1. No Refund Policy</h3><p>All payments made towards the <strong>Training Program</strong> are <strong>non-refundable</strong> under any circumstances. By enrolling in this program, participants acknowledge and agree to this policy.</p>
+<h3>2. Admission Amount Non-Refundable</h3><p>If a participant takes admission but, for any reason, <strong>decides not to continue</strong> with the training, the <strong>admission amount will not be refunded</strong>.<br>This is applicable regardless of the reason for non-continuation after enrollment.</p>
+<h3>3. Copyright and Content Usage Policy</h3><ul><li>Participants are strictly prohibited from uploading, sharing, or leaking any videos, materials, or other copyrighted content provided during the program.</li><li>Any breach of this policy will result in immediate termination from the program without refund, and legal action may be taken under applicable copyright laws.</li></ul>
+<h3>4. LMS and Class Link Sharing Policy</h3><ul><li>Sharing of class links, usernames, or passwords for the Learning Management System (LMS) with others or in any group is strictly prohibited.</li><li>If such activity is detected, access to the program will be permanently <strong>blocked</strong> without refund.</li><li>Participants agree to maintain confidentiality and use the provided credentials solely for their personal use during the program.</li></ul>
+<h3>5. LMS Access Policy</h3><ul><li>Access to the Learning Management System (LMS) will be granted <strong>only after the full payment</strong> for the program is received.</li><li>Participants are responsible for completing their payment to ensure uninterrupted access to the program resources.</li></ul>
+<h3>6. Responsibility for Legal Activities</h3><ul><li><strong>Cybersecurity Training Program</strong> is intended for <strong>educational purposes only</strong>.</li><li>The training focuses on <strong>offensive and defensive techniques</strong>, teaching how hackers exploit vulnerabilities and how to secure systems against such attacks.</li><li>Participants are strictly prohibited from using the knowledge gained in this program for illegal activities. Any such use is solely the responsibility of the individual and is at their own risk. The company will not be held accountable for any illegal activities performed by participants.</li></ul>
+<h3>7. Attendance Requirement</h3><ul><li>Participants are required to maintain a <strong>minimum of 80% attendance</strong> throughout the course.</li><li>Failure to meet this attendance requirement may result in <strong>termination from the program</strong> without refund.</li><li>It is the participant's responsibility to track and ensure they meet the attendance criteria.</li></ul>
+<h3>8. Certification Requirement</h3><ul><li>Participants must <strong>score a minimum of 75%</strong> in the final exam to be eligible for certification.</li><li>Only those who meet this requirement will be awarded the program certificate.</li><li>Participants failing to meet the minimum score will not receive the certificate.</li></ul>
+<h3>9. Re-examination Policy</h3><ul><li>In case a participant <strong>fails the exam</strong> or <strong>is absent</strong> during the exam, they may apply for a re-examination by paying a <strong>token amount</strong> as a re-examination fee.</li><li>The token amount will be specified by the program administrators, and re-examination will only be allowed once.</li></ul>
+<h3>10. Feedback Video Requirement</h3><ul><li>After completing the <strong>Cybersecurity Training Program</strong>, participants must submit a <strong>feedback video</strong>.</li><li>Providing this feedback video is <strong>mandatory</strong> for generating and receiving the program certificate.</li><li>The video should include a brief overview of the participant's experience, learnings, and how they intend to apply the knowledge gained from the training.</li></ul>
+<h3>11. EMI Payment Policy</h3><ul><li>If a participant opts for <strong>EMI payment</strong> for the course, they will not be eligible for any <strong>discounts or offers</strong>.</li><li><strong>No discount or offer</strong> will be provided to participants who choose to pay via EMI.</li><li>If the participant opts to pay the full course fee in <strong>one-time payment</strong>, they will be eligible for any <strong>discounts or special offers</strong> available at the time of enrollment.</li><li><strong>If the participant does not complete the full EMI payment</strong>, the remaining paid amount will <strong>not be refunded</strong> under any circumstances.</li><li>The participant will lose access to the program if the EMI payments are not completed.</li></ul>
+<h3>12. Failure to Pay EMI Policy</h3><ul><li>If a participant opts for EMI payment and fails to make the <strong>EMI payment</strong> on time, the team will provide a <strong>grace period</strong> for the payment.</li><li>If the participant does not clear the payment after the grace period, the team will issue a <strong>warning</strong> and provide the participant one <strong>last chance</strong> to make the payment.</li><li>If the payment is not made after the last chance, the participant will be <strong>removed from the batch</strong> and will lose access to course materials. They will not be eligible for certification, and no further payments will be accepted to continue in the program.</li></ul>
+<h3>13. Group Creation Policy</h3><ul><li>During the course of training, participants are <strong>not permitted to create any other groups</strong> or forums for discussion or sharing training content.</li><li>Creating unauthorized groups related to the training program is strictly prohibited. Violators will face consequences, including <strong>termination from the program</strong> without refund.</li><li>All communication and discussions related to the program should be conducted via the official channels provided by the program administrators.</li></ul>
+<h3>14. Batch or Faculty Change Policy</h3><ul><li>If a participant faces difficulties in understanding the training content, they are <strong>allowed to change the batch or faculty</strong> for the course.</li><li>This option is available <strong>within the first 3 months</strong> of the training program. After this period, any batch or faculty change will be <strong>chargeable</strong> and will incur a <strong>renewal charge</strong>.</li><li>The renewal charge details will be communicated by the program administrators.</li><li>It is the participant's responsibility to inform the program team promptly if they wish to make such changes.</li></ul>
+</article></div></main>
+<footer class="site-footer"><div class="footer-inner">    <div data-train-ticker data-speed="50" data-direction="reverse" class="footer-strip">
+      <div class="train-track flex items-center">
+        <div class="train-chunk flex items-center gap-6 pr-6">
+          <span>CCCE Training</span><span class="strip-sep">x</span>
+          <span>Guided Labs</span><span class="strip-sep">x</span>
+          <span>Mentor Review</span><span class="strip-sep">x</span>
+          <span style="color:#ffffff;">CyberPro AI Support</span><span class="strip-sep">x</span>
+          <span>27 Modules</span><span class="strip-sep">x</span>
+          <span>180+ Tools</span><span class="strip-sep">x</span>
+          <span>3 Months Live</span><span class="strip-sep">x</span>
+          <span>1 Month Internship</span><span class="strip-sep">x</span>
+        </div>
+        <div class="train-chunk flex items-center gap-6 pr-6" aria-hidden="true">
+          <span>CCCE Training</span><span class="strip-sep">x</span>
+          <span>Guided Labs</span><span class="strip-sep">x</span>
+          <span>Mentor Review</span><span class="strip-sep">x</span>
+          <span style="color:#ffffff;">CyberPro AI Support</span><span class="strip-sep">x</span>
+          <span>27 Modules</span><span class="strip-sep">x</span>
+          <span>180+ Tools</span><span class="strip-sep">x</span>
+          <span>3 Months Live</span><span class="strip-sep">x</span>
+          <span>1 Month Internship</span><span class="strip-sep">x</span>
+        </div>
+      </div>
+    </div><div class="footer-grid">
+      <div><a class="brand" href="/"><img src="/assets/logo-mark.png" alt="" class="brand-logo">CYBERPRO</a><p style="margin-top:16px;">A practical cybersecurity learning platform for structured study, labs, mentorship, and real progress.</p><div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:9999px;background:rgba(255,255,255,0.05);border:1px solid rgba(57,255,20,0.3);font-family:monospace;font-size:11px;color:#d1d5db;margin-top:14px;"><span style="width:6px;height:6px;border-radius:50%;background:#39ff14;box-shadow:0 0 6px #39ff14;"></span>Founder / Owner: <strong style="color:#ffffff;">Parth Rathod</strong></div></div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="/programs">Programs</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Community &amp; Contact</h4>
+        <a href="https://whatsapp.com/channel/0029VbEBQmnDZ4LY3ot9dp2x" target="_blank" rel="noopener noreferrer">WhatsApp Channel</a>
+        <a href="https://t.me/+UYQe9IMi-b0xOWE1" target="_blank" rel="noopener noreferrer">Join Official CYBERPRO Telegram Channel</a>
+        <a href="mailto:cyberproofficial.in@gmail.com">Email Us</a>
+        <a href="tel:+9176668762325" style="color:#39ff14;font-weight:bold;">Call Support (+91 76668762325)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-conditions/">Terms</a>
+        <a href="/cancellation-refund/">Refund Policy</a>
+        <a href="/shipping-policy/">Shipping Policy</a>
+        <a href="/guidelines/">Guidelines</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 CyberPro. All rights reserved.</span><span>Built for learning by doing.</span></div>            <!-- Ultra-Tier CYBERPRO Brand Signature -->
+    <div class="footer-wordmark-wrap">
+      <div class="wordmark-telemetry">
+        <span class="telemetry-dot"></span>
+        <span>DEFENSE GRID ACTIVE // CCCE CERTIFIED</span>
+        <span class="telemetry-dot"></span>
+      </div>
+      <div class="animated-cyberpro-wordmark">CYBERPRO</div>
+      <div class="wordmark-subline">PRACTICAL OFFENSIVE SECURITY &bull; ENTERPRISE LABS &bull; NEXT-GEN READINESS</div>
+    </div></div></footer><script src="/legal-page.js"></script>
+
+<!-- CYBERPRO COMMUNITY MODAL -->
+<div id="cyberpro-community-modal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/85 backdrop-blur-md p-4 overflow-y-auto transition-all duration-300 opacity-0" style="display:none;">
+  <div class="relative z-10 w-full max-w-xl bg-[#0b0c10] border border-[#39ff14]/40 rounded-2xl p-6 sm:p-8 shadow-[0_0_60px_rgba(57,255,20,0.25)] text-left font-mono">
+    <!-- Close Button -->
+    <button onclick="closeCommunityModal()" type="button" class="absolute top-4 right-4 w-9 h-9 rounded-lg bg-white/5 border border-white/10 hover:border-[#39ff14] hover:text-[#39ff14] text-gray-400 flex items-center justify-center transition-all cursor-pointer">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+
+    <!-- Header -->
+    <div class="mb-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#39ff14]/10 border border-[#39ff14]/40 text-[10px] font-bold text-[#39ff14] uppercase tracking-widest mb-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#39ff14] shadow-[0_0_6px_rgba(57,255,20,0.8)]"></span>
+        Official CyberPro Hub
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">CyberPro Hacker Community</h2>
+      <p class="text-xs text-gray-400 mt-2 leading-relaxed">Connect with 12,000+ students, offensive security researchers, mentors, and ethical hackers building real careers.</p>
+    </div>
+
+    <!-- Community Grid -->
+    <div class="space-y-3 mb-6">
+      <!-- Official CYBERPRO WhatsApp Channel -->
+      <a href="https://whatsapp.com/channel/0029VbEBQmnDZ4LY3ot9dp2x" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#39ff14] hover:bg-[#39ff14]/5 transition-all group" style="text-decoration:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:8px;background:rgba(37,211,102,0.2);border:1px solid rgba(37,211,102,0.4);display:flex;align-items:center;justify-content:center;color:#25d366;">
+              <svg style="width:20px;height:20px;fill:currentColor;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.842-.981z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:14px;font-weight:bold;color:#ffffff;">Official CYBERPRO WhatsApp Channel</div>
+              <div style="font-size:11px;color:#94a3b8;">Join Official CYBERPRO WhatsApp Channel for alerts, batch updates & live workshops</div>
+            </div>
+          </div>
+          <span style="font-size:12px;color:#39ff14;font-weight:bold;">Join Channel &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Official CYBERPRO Telegram Channel -->
+      <a href="https://t.me/+UYQe9IMi-b0xOWE1" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#39ff14] hover:bg-[#39ff14]/5 transition-all group">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-[#229ED9]/20 border border-[#229ED9]/40 flex items-center justify-center text-[#229ED9]">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.3-.61.3l.2-3.048 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.928z"/></svg>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-[#39ff14] transition-colors">Official CYBERPRO Telegram Channel</div>
+              <div class="text-[11px] text-gray-400">Join Official CYBERPRO Telegram Channel for zero-day alerts, CVE breakdowns & threat intel</div>
+            </div>
+          </div>
+          <span class="text-xs text-[#39ff14] font-bold group-hover:translate-x-1 transition-transform">Join Official CYBERPRO Telegram Channel &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Discord CTF Labs -->
+      <a href="https://discord.gg/cyberpro" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#39ff14] hover:bg-[#39ff14]/5 transition-all group">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-[#5865F2]/20 border border-[#5865F2]/40 flex items-center justify-center text-[#5865F2]">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-[#39ff14] transition-colors">Discord CTF War Rooms</div>
+              <div class="text-[11px] text-gray-400">Team voice rooms, bug bounty share & weekly CTF challenges</div>
+            </div>
+          </div>
+          <span class="text-xs text-[#39ff14] font-bold group-hover:translate-x-1 transition-transform">Join &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Direct Mentors Email -->
+      <a href="mailto:community@cyberpro.com?subject=CyberPro%20Community%20Inquiry" class="block p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#39ff14] hover:bg-[#39ff14]/5 transition-all group">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-[#39ff14]/20 border border-[#39ff14]/40 flex items-center justify-center text-[#39ff14]">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-[#39ff14] transition-colors">Mentor Office Hours &amp; Inquiries</div>
+              <div class="text-[11px] text-gray-400">community@cyberpro.com &bull; direct instructor support</div>
+            </div>
+          </div>
+          <span class="text-xs text-[#39ff14] font-bold group-hover:translate-x-1 transition-transform">Email &rarr;</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
+      <span>Free to join for all enrolled &amp; aspiring students</span>
+      <button onclick="closeCommunityModal()" class="px-3 py-1 rounded bg-white/10 text-white hover:bg-white/20 transition-all cursor-pointer">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/train-ticker.js"></script>
+<script src="/assets/cyberpro-signature.js"></script>
+</body>
+</html>

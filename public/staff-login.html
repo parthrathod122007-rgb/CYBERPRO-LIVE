@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERPRO // Staff, Faculty &amp; Administrator Portal</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'parth-bg': '#050806',
+                        'parth-surface': '#0b120e',
+                        'parth-border': '#1b2a21',
+                        'parth-accent': '#39ff14',
+                        'parth-accent-hover': '#2ee60e',
+                        'parth-text-sec': '#94a3b8'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link rel="stylesheet" href="/assets/cyber-interactions.css">
+    <style>
+        body {
+            background:
+                radial-gradient(640px 420px at 14% 16%, rgba(57, 255, 20, 0.13), transparent 70%),
+                radial-gradient(680px 460px at 86% 24%, rgba(0, 217, 245, 0.11), transparent 72%),
+                radial-gradient(760px 520px at 50% 82%, rgba(0, 245, 160, 0.08), transparent 74%),
+                #030604;
+            min-height: 100vh;
+        }
+        .staff-glass-card {
+            background: linear-gradient(
+                160deg,
+                rgba(255, 255, 255, 0.10) 0%,
+                rgba(11, 24, 17, 0.72) 34%,
+                rgba(5, 11, 8, 0.88) 100%
+            );
+            backdrop-filter: blur(26px) saturate(190%);
+            -webkit-backdrop-filter: blur(26px) saturate(190%);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            box-shadow:
+                0 32px 96px rgba(0, 0, 0, 0.84),
+                0 0 48px rgba(57, 255, 20, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.28),
+                inset 0 -1px 0 rgba(57, 255, 20, 0.14);
+        }
+        .staff-side-panel {
+            background: linear-gradient(165deg, rgba(255, 255, 255, 0.06), rgba(6, 16, 11, 0.56));
+        }
+        .staff-input {
+            background: rgba(255, 255, 255, 0.045);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+        .staff-input:focus {
+            background: rgba(57, 255, 20, 0.05);
+            border-color: rgba(57, 255, 20, 0.65);
+            box-shadow: 0 0 0 3px rgba(57, 255, 20, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        }
+        .staff-info-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+        }
+        button[type="submit"]:disabled {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+            color: #94a3b8 !important;
+            box-shadow: none !important;
+            cursor: not-allowed !important;
+            transform: none !important;
+        }
+        @media (max-width: 768px) {
+            .staff-glass-card {
+                backdrop-filter: blur(10px) saturate(150%);
+                -webkit-backdrop-filter: blur(10px) saturate(150%);
+            }
+        }
+    </style>
+</head>
+<body class="text-white font-sans antialiased flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-x-hidden">
+    <!-- Subtle Grid Overlay -->
+    <div class="fixed inset-0 z-0 opacity-20 pointer-events-none" style="background-image: linear-gradient(#27272a 1px, transparent 1px), linear-gradient(90deg, #27272a 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+    <main class="relative z-10 w-full max-w-5xl my-auto">
+        <div class="staff-glass-card rounded-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <!-- Left Side: Staff & Faculty Security Brief -->
+            <div class="staff-side-panel w-full md:w-5/12 p-8 lg:p-10 border-b md:border-b-0 md:border-r border-white/15 flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-parth-accent to-transparent"></div>
+
+                <div>
+                    <a href="/" class="inline-flex items-center gap-3 mb-7 group">
+                        <div class="w-10 h-10 rounded-xl bg-black/80 border border-parth-accent/50 p-1 flex items-center justify-center shadow-[0_0_15px_rgba(57,255,20,0.4)] overflow-hidden">
+                            <img src="/assets/logo-mark-transparent.png" alt="CyberPro Logo" class="w-full h-full object-contain filter drop-shadow-[0_0_6px_#39ff14]">
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold text-white font-mono uppercase tracking-wider group-hover:text-parth-accent transition-colors">CYBERPRO STAFF</span>
+                            <span class="text-[9px] text-parth-accent font-mono tracking-widest uppercase">ADMIN &amp; INSTRUCTOR ACCESS</span>
+                        </div>
+                    </a>
+
+                    <h1 class="text-2xl lg:text-3xl font-extrabold text-white font-mono mb-3 leading-snug">
+                        Command. Mentor. Govern.
+                    </h1>
+                    <p class="text-xs text-parth-text-sec font-mono leading-relaxed mb-6">
+                        Restricted authentication gateway for CyberPro Academy Administrators, Leads CRM Managers, and Live Cohort Instructors.
+                    </p>
+
+                    <div class="space-y-3 font-mono text-xs">
+                        <div class="staff-info-box rounded-xl p-3 flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full bg-parth-accent mt-1.5 shrink-0 shadow-[0_0_6px_#39ff14]"></span>
+                            <div>
+                                <span class="font-bold text-white block">Audited Privileged Sessions</span>
+                                <span class="text-[11px] text-parth-text-sec">Server-side role verification &amp; Turnstile human telemetry</span>
+                            </div>
+                        </div>
+                        <div class="staff-info-box rounded-xl p-3 flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 shrink-0 shadow-[0_0_6px_#34d399]"></span>
+                            <div>
+                                <span class="font-bold text-white block">Dedicated Control Consoles</span>
+                                <span class="text-[11px] text-parth-text-sec">Administrators enter CRM &amp; Governance; Instructors access Cohort LMS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-white/10 text-[10px] text-gray-400 font-mono flex items-center justify-between">
+                    <span>Cloudflare Managed Turnstile</span>
+                    <span class="text-parth-accent font-bold">● ARMED</span>
+                </div>
+            </div>
+
+            <!-- Right Side: Admin & Instructor Authentication Forms -->
+            <div class="w-full md:w-7/12 p-6 sm:p-8 lg:p-10 flex flex-col justify-center relative">
+                <!-- Back Link -->
+                <div class="flex items-center justify-between gap-2 mb-5">
+                    <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-parth-accent">Privileged Staff Terminal</span>
+                    <a href="/" class="text-[11px] font-mono text-gray-400 hover:text-white transition-colors">&larr; Back to Site</a>
+                </div>
+
+                <!-- 2-Option Switcher: Admin | Instructor -->
+                <div class="grid grid-cols-2 gap-1.5 p-1 bg-black/70 border border-white/15 rounded-xl mb-6 text-xs font-mono">
+                    <button type="button" onclick="switchStaffTab('admin')" id="tab-admin" class="staff-tab-btn active px-4 py-2.5 rounded-lg font-bold transition-all text-black bg-parth-accent shadow-[0_0_12px_rgba(57,255,20,0.5)] cursor-pointer text-center">
+                        Admin Login
+                    </button>
+                    <button type="button" onclick="switchStaffTab('instructor')" id="tab-instructor" class="staff-tab-btn px-4 py-2.5 rounded-lg font-bold transition-all text-parth-text-sec hover:text-white hover:bg-white/5 cursor-pointer text-center">
+                        Instructor Login
+                    </button>
+                </div>
+
+                <!-- Alert Box -->
+                <div id="staff-alert-box" class="hidden mb-4 p-3 rounded-xl font-mono text-xs border transition-all"></div>
+
+                <!-- 1. ADMIN LOGIN FORM -->
+                <form id="form-staff-admin" onsubmit="handleStaffSubmit(event, 'admin')" class="staff-panel space-y-4 font-mono">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-[11px] flex items-center gap-2">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        <span>ROOT ADMINISTRATOR TERMINAL // AUDITED ACCESS ONLY</span>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-parth-text-sec uppercase tracking-widest mb-1.5">Administrator Email</label>
+                        <input type="email" id="admin-email" required placeholder="admin@cyberpro.com" autocomplete="username" class="staff-input w-full rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-parth-text-sec uppercase tracking-widest mb-1.5">Root Passkey / Password</label>
+                        <div class="relative">
+                            <input type="password" id="admin-password" required placeholder="Enter administrative key" autocomplete="current-password" class="staff-input w-full rounded-xl px-4 py-3 pr-11 text-sm text-white placeholder-gray-500 outline-none transition-all">
+                            <button type="button" onclick="toggleStaffPw('admin-password', this)" aria-label="Show password" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="py-1">
+                        <div id="cf-turnstile-slot-admin" class="flex justify-center w-full min-h-[66px]"></div>
+                        <div id="cf-status-admin" class="text-center text-[10px] text-gray-400 mt-1">Verification required before admin authentication</div>
+                    </div>
+
+                    <button type="submit" id="btn-submit-admin" disabled class="w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all bg-gray-800 text-gray-500 cursor-not-allowed flex items-center justify-center gap-2">
+                        <span>Authenticate as Administrator</span>
+                    </button>
+                </form>
+
+                <!-- 2. INSTRUCTOR / MENTOR LOGIN FORM -->
+                <form id="form-staff-instructor" onsubmit="handleStaffSubmit(event, 'instructor')" class="staff-panel hidden space-y-4 font-mono">
+                    <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] flex items-center gap-2">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                        <span>CYBERPRO FACULTY &amp; MENTOR DESK</span>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-parth-text-sec uppercase tracking-widest mb-1.5">Instructor Email / Faculty ID</label>
+                        <input type="email" id="instructor-email" required placeholder="mentor@cyberpro.in" autocomplete="username" class="staff-input w-full rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-parth-text-sec uppercase tracking-widest mb-1.5">Portal Key / Password</label>
+                        <div class="relative">
+                            <input type="password" id="instructor-password" required placeholder="Enter mentor portal key" autocomplete="current-password" class="staff-input w-full rounded-xl px-4 py-3 pr-11 text-sm text-white placeholder-gray-500 outline-none transition-all">
+                            <button type="button" onclick="toggleStaffPw('instructor-password', this)" aria-label="Show password" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="py-1">
+                        <div id="cf-turnstile-slot-instructor" class="flex justify-center w-full min-h-[66px]"></div>
+                        <div id="cf-status-instructor" class="text-center text-[10px] text-gray-400 mt-1">Verification required before instructor access</div>
+                    </div>
+
+                    <button type="submit" id="btn-submit-instructor" disabled class="w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all bg-gray-800 text-gray-500 cursor-not-allowed flex items-center justify-center gap-2">
+                        <span>Access Faculty Portal</span>
+                    </button>
+                </form>
+
+                <!-- Footer links -->
+                <div class="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-parth-text-sec">
+                    <a href="/?login=1" class="text-parth-accent hover:underline font-bold">Student Portal Login &rarr;</a>
+                    <div class="flex flex-wrap justify-center gap-3 text-[10px] font-bold">
+                        <a href="/privacy-policy/" class="hover:text-white transition-colors">Privacy</a>
+                        <a href="/terms-conditions/" class="hover:text-white transition-colors">Terms</a>
+                        <a href="/contact" class="hover:text-white transition-colors">Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    (function initStaffAuth() {
+        var turnstileSiteKey = "1x00000000000000000000AA";
+        var activeTab = (window.location.search.indexOf("role=instructor") !== -1 || window.location.hash === "#instructor")
+            ? "instructor"
+            : "admin";
+        var widgets = {};
+        var tokens = {};
+
+        window.toggleStaffPw = function(inputId, btn) {
+            var el = document.getElementById(inputId);
+            if (!el) return;
+            var showing = el.type === "text";
+            el.type = showing ? "password" : "text";
+            if (btn) btn.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+        };
+
+        function showAlert(msg, isSuccess) {
+            var box = document.getElementById("staff-alert-box");
+            if (!box) return;
+            box.textContent = msg;
+            box.classList.remove("hidden", "bg-red-500/15", "border-red-500/40", "text-red-400", "bg-emerald-500/15", "border-emerald-500/40", "text-emerald-400");
+            if (isSuccess) {
+                box.classList.add("bg-emerald-500/15", "border-emerald-500/40", "text-emerald-400");
+            } else {
+                box.classList.add("bg-red-500/15", "border-red-500/40", "text-red-400");
+            }
+        }
+
+        function setSubmitEnabled(mode, enabled) {
+            var btn = document.getElementById("btn-submit-" + mode);
+            if (!btn) return;
+            btn.disabled = !enabled;
+            btn.className = enabled
+                ? "w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all bg-parth-accent hover:bg-parth-accent-hover text-black shadow-[0_0_20px_rgba(57,255,20,0.4)] cursor-pointer flex items-center justify-center gap-2"
+                : "w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all bg-gray-800 text-gray-500 cursor-not-allowed flex items-center justify-center gap-2";
+        }
+
+        function renderTurnstileWidget(mode) {
+            var container = document.getElementById("cf-turnstile-slot-" + mode);
+            if (!container || widgets[mode] !== undefined) return;
+            if (window.turnstile && typeof window.turnstile.render === "function") {
+                try {
+                    widgets[mode] = window.turnstile.render(container, {
+                        sitekey: turnstileSiteKey,
+                        theme: "dark",
+                        callback: function(token) {
+                            tokens[mode] = token;
+                            var st = document.getElementById("cf-status-" + mode);
+                            if (st) st.innerHTML = '<span class="text-parth-accent font-bold">&#10003; Human verified by Cloudflare Turnstile</span>';
+                            setSubmitEnabled(mode, true);
+                        },
+                        "expired-callback": function() {
+                            tokens[mode] = "";
+                            setSubmitEnabled(mode, false);
+                        },
+                        "error-callback": function() {
+                            tokens[mode] = "";
+                            setSubmitEnabled(mode, false);
+                        }
+                    });
+                } catch (e) {}
+            } else {
+                setTimeout(function() { renderTurnstileWidget(mode); }, 250);
+            }
+        }
+
+        function resetWidget(mode) {
+            tokens[mode] = "";
+            if (window.turnstile && widgets[mode] !== undefined) {
+                try { window.turnstile.reset(widgets[mode]); } catch (e) {}
+            }
+            setSubmitEnabled(mode, false);
+        }
+
+        window.switchStaffTab = function(mode) {
+            activeTab = (mode === "instructor") ? "instructor" : "admin";
+            document.querySelectorAll(".staff-tab-btn").forEach(function(btn) {
+                btn.className = "staff-tab-btn px-4 py-2.5 rounded-lg font-bold transition-all text-parth-text-sec hover:text-white hover:bg-white/5 cursor-pointer text-center";
+            });
+            var activeBtn = document.getElementById("tab-" + activeTab);
+            if (activeBtn) {
+                activeBtn.className = "staff-tab-btn active px-4 py-2.5 rounded-lg font-bold transition-all text-black bg-parth-accent shadow-[0_0_12px_rgba(57,255,20,0.5)] cursor-pointer text-center";
+            }
+            document.querySelectorAll(".staff-panel").forEach(function(p) { p.classList.add("hidden"); });
+            var panel = document.getElementById("form-staff-" + activeTab);
+            if (panel) panel.classList.remove("hidden");
+            var alertBox = document.getElementById("staff-alert-box");
+            if (alertBox) alertBox.classList.add("hidden");
+            renderTurnstileWidget(activeTab);
+        };
+
+        window.handleStaffSubmit = function(e, mode) {
+            e.preventDefault();
+            var token = tokens[mode] || "";
+            var btn = document.getElementById("btn-submit-" + mode);
+            if (!token) {
+                showAlert("Please complete Cloudflare verification above first.", false);
+                return;
+            }
+            tokens[mode] = "";
+            var origHtml = btn ? btn.innerHTML : "";
+            if (btn) {
+                btn.disabled = true;
+                btn.textContent = "Verifying with Server...";
+            }
+            var emailEl = document.getElementById(mode + "-email");
+            var pwEl = document.getElementById(mode + "-password");
+            fetch("/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: (emailEl ? emailEl.value : "").trim(),
+                    password: pwEl ? pwEl.value : "",
+                    role: mode,
+                    "cf-turnstile-response": token
+                })
+            })
+            .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+            .then(function(result) {
+                if (result.ok) {
+                    showAlert(result.data.message || "Authenticated! Opening console...", true);
+                    if (btn) btn.textContent = "Authenticated";
+                    setTimeout(function() {
+                        location.assign(result.data.redirect || (mode === "admin" ? "/admin" : "/lms"));
+                    }, 450);
+                } else {
+                    showAlert(result.data.error || "Authentication failed.", false);
+                    if (btn) btn.innerHTML = origHtml;
+                    resetWidget(mode);
+                }
+            })
+            .catch(function() {
+                showAlert("Network or server error. Please try again.", false);
+                if (btn) btn.innerHTML = origHtml;
+                resetWidget(mode);
+            });
+        };
+
+        fetch("/api/turnstile-config")
+            .then(function(r) { return r.json(); })
+            .then(function(cfg) {
+                if (cfg && cfg.site_key) turnstileSiteKey = cfg.site_key;
+                window.switchStaffTab(activeTab);
+            })
+            .catch(function() {
+                window.switchStaffTab(activeTab);
+            });
+    })();
+    </script>
+</body>
+</html>

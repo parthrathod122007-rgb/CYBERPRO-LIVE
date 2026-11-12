@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberPro Verified Skill Passport // Official Registry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #07090e; color: #f1f5f9; }
+        .font-mono { font-family: 'Fira Code', monospace; }
+        .cyber-card {
+            background: rgba(13, 18, 28, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            backdrop-filter: blur(16px);
+        }
+        .cyber-border-green {
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.08);
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; color: black !important; }
+            .cyber-card { background: white !important; border: 1px solid #cbd5e1 !important; color: black !important; }
+            .text-emerald-400, .text-cyan-400 { color: #0f766e !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 flex flex-col items-center">
+
+    <!-- Top Navigation / Banner -->
+    <header class="w-full max-w-5xl flex items-center justify-between pb-6 border-b border-slate-800 no-print mb-8">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-mono font-bold text-lg">
+                CP
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-white tracking-wide">CYBERPRO <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono border border-emerald-500/30">REGISTRY VERIFIED</span></h1>
+                <p class="text-xs text-slate-400 font-mono">Official Decentralized Talent & Skill Passport</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-3">
+            <button onclick="window.print()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono border border-slate-700 flex items-center space-x-2 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                <span>Export PDF</span>
+            </button>
+            <button onclick="navigator.clipboard.writeText(window.location.href); alert('Verified Passport URL copied!');" class="px-4 py-2 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 text-xs font-mono border border-emerald-500/40 flex items-center space-x-2 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Share Link</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main id="passport-container" class="w-full max-w-5xl space-y-8">
+        <div id="loading-state" class="text-center py-20">
+            <div class="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-emerald-400"></div>
+            <p class="mt-4 text-sm font-mono text-slate-400">Querying CyberPro Cryptographic Registry...</p>
+        </div>
+
+        <div id="error-state" class="hidden cyber-card rounded-2xl p-12 text-center border-red-500/30">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 text-2xl font-bold font-mono">!</div>
+            <h2 class="text-xl font-bold text-white mb-2">Passport Record Not Found or Private</h2>
+            <p id="error-message" class="text-sm text-slate-400 max-w-md mx-auto">This skill passport does not exist or has been marked private by the student.</p>
+        </div>
+
+        <div id="passport-card" class="hidden space-y-8">
+            <!-- Student Header Profile Banner -->
+            <div class="cyber-card cyber-border-green rounded-2xl p-6 md:p-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
+                    <div class="flex items-center space-x-5">
+                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/40 flex items-center justify-center font-bold text-emerald-400 text-2xl md:text-3xl font-mono shadow-lg shadow-emerald-500/10 overflow-hidden" id="student-avatar">
+                            PR
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-3 mb-1">
+                                <h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight" id="student-name">Parth Rathod</h2>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-mono bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">VERIFIED ALUMNI</span>
+                            </div>
+                            <p class="text-sm font-mono text-cyan-400 mb-2" id="student-headline">Junior Cybersecurity & Threat Defense Specialist</p>
+                            <p class="text-xs text-slate-400 flex items-center space-x-4">
+                                <span id="student-id-pill" class="font-mono bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700">ID: CP-00003</span>
+                                <span id="student-city">Bengaluru, India</span>
+                                <span id="student-track" class="text-emerald-400">CCCE Flagship Track</span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- QR Verification & XP -->
+                    <div class="flex items-center space-x-4 self-center md:self-auto bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                        <div id="qrcode" class="p-1 bg-white rounded-lg"></div>
+                        <div class="text-right">
+                            <p class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Mastery XP</p>
+                            <p class="text-2xl font-bold font-mono text-emerald-400" id="student-xp">2,450</p>
+                            <span class="inline-block mt-1 text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30" id="student-badge">CyberPro Elite</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-slate-800/80">
+                    <p class="text-xs text-slate-300 leading-relaxed" id="student-bio"></p>
+                </div>
+            </div>
+
+            <!-- 3-Tier Skills Grid -->
+            <div class="cyber-card rounded-2xl p-6 md:p-8">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                            <span>VERIFIED SKILL MATRIX</span>
+                            <span class="text-xs font-mono text-slate-400">(Multi-Tier Audit)</span>
+                        </h3>
+                        <p class="text-xs text-slate-400">Validated through hands-on cyber ranges, bug bounties, and instructor grading</p>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs font-mono">
+                        <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span><span class="text-slate-300">Verified</span></span>
+                        <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span><span class="text-slate-300">Practiced</span></span>
+                        <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span><span class="text-slate-300">Learning</span></span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="skills-columns-container">
+                    <!-- Column 1: Verified Skills -->
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-mono uppercase text-emerald-400 tracking-wider flex items-center justify-between pb-2 border-b border-emerald-500/20">
+                            <span>★ Level 3: Verified</span>
+                            <span id="count-verified" class="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300 text-[10px]">0</span>
+                        </h4>
+                        <div id="skills-verified-list" class="space-y-2"></div>
+                    </div>
+
+                    <!-- Column 2: Practiced Skills -->
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-mono uppercase text-cyan-400 tracking-wider flex items-center justify-between pb-2 border-b border-cyan-500/20">
+                            <span>◆ Level 2: Practiced</span>
+                            <span id="count-practiced" class="px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 text-[10px]">0</span>
+                        </h4>
+                        <div id="skills-practiced-list" class="space-y-2"></div>
+                    </div>
+
+                    <!-- Column 3: Learning Skills -->
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider flex items-center justify-between pb-2 border-b border-slate-700">
+                            <span>● Level 1: In Study</span>
+                            <span id="count-learning" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px]">0</span>
+                        </h4>
+                        <div id="skills-learning-list" class="space-y-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practical Cyber Range & Bug Bounty Evidence -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Cyber Range Labs Completed -->
+                <div class="cyber-card rounded-2xl p-6">
+                    <h3 class="text-sm font-bold text-white font-mono uppercase tracking-wider mb-4 flex items-center justify-between">
+                        <span class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                            <span>Cloud Cyber Range Labs</span>
+                        </span>
+                        <span id="count-labs" class="text-xs text-cyan-400 font-normal">0 Completed</span>
+                    </h3>
+                    <div id="labs-list" class="space-y-3 max-h-80 overflow-y-auto pr-1"></div>
+                </div>
+
+                <!-- Bug Bounty Discoveries & SOC -->
+                <div class="cyber-card rounded-2xl p-6">
+                    <h3 class="text-sm font-bold text-white font-mono uppercase tracking-wider mb-4 flex items-center justify-between">
+                        <span class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                            <span>Bug Bounty & SOC Investigations</span>
+                        </span>
+                        <span id="count-bounties" class="text-xs text-emerald-400 font-normal">0 Verified</span>
+                    </h3>
+                    <div id="bounties-list" class="space-y-3 max-h-80 overflow-y-auto pr-1"></div>
+                </div>
+            </div>
+
+            <!-- Approved Projects Showcase -->
+            <div id="projects-section" class="cyber-card rounded-2xl p-6 md:p-8">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center space-x-2">
+                    <span>APPROVED CYBERSECURITY PROJECTS</span>
+                    <span class="text-xs font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">PORTFOLIO ARTIFACTS</span>
+                </h3>
+                <div id="projects-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+
+            <!-- Earned Credentials & Certificates -->
+            <div id="certificates-section" class="cyber-card rounded-2xl p-6 md:p-8">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center space-x-2">
+                    <span>OFFICIAL CYBERPRO CERTIFICATIONS</span>
+                    <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">TAMPER-PROOF</span>
+                </h3>
+                <div id="certificates-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-5xl text-center py-10 mt-12 border-t border-slate-800 text-xs text-slate-500 font-mono">
+        <p>CyberPro Academy // Official Public Skill Passport Registry // Hash Verification Protocol v4.2</p>
+        <p class="mt-1">All credentials, lab scores, and instructor evaluations are cryptographically signed and immutable.</p>
+    </footer>
+
+    <script>
+        async function loadPassport() {
+            const token = window.location.pathname.split('/passport/')[1] || '';
+            if (!token) {
+                document.getElementById('loading-state').classList.add('hidden');
+                document.getElementById('error-state').classList.remove('hidden');
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/public/passport/${token}`);
+                const data = await res.json();
+
+                if (!res.ok || !data.success) {
+                    document.getElementById('loading-state').classList.add('hidden');
+                    document.getElementById('error-state').classList.remove('hidden');
+                    document.getElementById('error-message').innerText = data.error || 'Passport record unavailable.';
+                    return;
+                }
+
+                renderPassport(data);
+            } catch (err) {
+                document.getElementById('loading-state').classList.add('hidden');
+                document.getElementById('error-state').classList.remove('hidden');
+                document.getElementById('error-message').innerText = 'Connection error querying registry.';
+            }
+        }
+
+        function renderPassport(data) {
+            document.getElementById('loading-state').classList.add('hidden');
+            document.getElementById('passport-card').classList.remove('hidden');
+
+            const s = data.student;
+            const set = data.settings;
+
+            document.getElementById('student-name').innerText = s.name;
+            document.getElementById('student-headline').innerText = set.headline || 'Cybersecurity Specialist';
+            document.getElementById('student-id-pill').innerText = `ID: ${s.student_id}`;
+            document.getElementById('student-city').innerText = s.city || 'India';
+            document.getElementById('student-bio').innerText = set.bio || 'Hands-on practical cybersecurity student at CYBERPRO.';
+            document.getElementById('student-xp').innerText = Number(data.total_xp).toLocaleString();
+            document.getElementById('student-badge').innerText = data.badge;
+
+            // QR Code
+            new QRCode(document.getElementById("qrcode"), {
+                text: window.location.href,
+                width: 64,
+                height: 64,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.M
+            });
+
+            // Skills render
+            const verified = data.skills_summary.verified || [];
+            const practiced = data.skills_summary.practiced || [];
+            const learning = data.skills_summary.learning || [];
+
+            document.getElementById('count-verified').innerText = verified.length;
+            document.getElementById('count-practiced').innerText = practiced.length;
+            document.getElementById('count-learning').innerText = learning.length;
+
+            renderSkillList('skills-verified-list', verified, 'emerald');
+            renderSkillList('skills-practiced-list', practiced, 'cyan');
+            renderSkillList('skills-learning-list', learning, 'slate');
+
+            // Completed Labs
+            const labs = data.completed_labs || [];
+            document.getElementById('count-labs').innerText = `${labs.length} Completed`;
+            const labsContainer = document.getElementById('labs-list');
+            if (labs.length === 0) {
+                labsContainer.innerHTML = '<p class="text-xs text-slate-500 italic">No cloud range labs recorded yet.</p>';
+            } else {
+                labsContainer.innerHTML = labs.map(l => `
+                    <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-white">${l.title}</p>
+                            <p class="text-[10px] font-mono text-cyan-400">${l.category} • ${l.difficulty}</p>
+                        </div>
+                        <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">+${l.score_awarded} XP</span>
+                    </div>
+                `).join('');
+            }
+
+            // Bounties & SOC
+            const bounties = data.bounties || [];
+            const socSims = data.soc_sims || [];
+            document.getElementById('count-bounties').innerText = `${bounties.length + socSims.length} Solved`;
+            const bountyContainer = document.getElementById('bounties-list');
+            const allEvidence = [
+                ...bounties.map(b => ({ title: b.title, tag: `Bounty (${b.severity})`, score: `+${b.points_awarded} Pts`, color: 'emerald' })),
+                ...socSims.map(sc => ({ title: sc.title, tag: `SOC Triage (${sc.attack_type})`, score: `${sc.accuracy_score}% Accuracy`, color: 'cyan' }))
+            ];
+            if (allEvidence.length === 0) {
+                bountyContainer.innerHTML = '<p class="text-xs text-slate-500 italic">No bug bounties or SOC evaluations recorded yet.</p>';
+            } else {
+                bountyContainer.innerHTML = allEvidence.map(e => `
+                    <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-white">${e.title}</p>
+                            <p class="text-[10px] font-mono text-${e.color}-400">${e.tag}</p>
+                        </div>
+                        <span class="text-xs font-mono text-${e.color}-400 bg-${e.color}-500/10 px-2 py-0.5 rounded border border-${e.color}-500/20">${e.score}</span>
+                    </div>
+                `).join('');
+            }
+
+            // Projects
+            const projects = data.projects || [];
+            const projContainer = document.getElementById('projects-list');
+            if (projects.length === 0) {
+                projContainer.innerHTML = '<p class="text-xs text-slate-500 italic col-span-2">No publicly approved projects.</p>';
+            } else {
+                projContainer.innerHTML = projects.map(p => `
+                    <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">${p.category}</span>
+                                <span class="text-xs font-mono text-emerald-400 font-bold">Grade ${p.grade_letter} (${p.total_marks}/100)</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1">${p.title}</h4>
+                            <p class="text-xs text-slate-400 line-clamp-2 mb-3">${p.description}</p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-2 border-t border-slate-800/80">
+                            ${p.repository_url ? `<a href="${p.repository_url}" target="_blank" class="text-xs font-mono text-emerald-400 hover:underline flex items-center space-x-1"><span>View Source</span></a>` : ''}
+                            ${p.demo_video_url ? `<a href="${p.demo_video_url}" target="_blank" class="text-xs font-mono text-cyan-400 hover:underline flex items-center space-x-1"><span>Demo Video</span></a>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Certificates
+            const certs = data.certificates || [];
+            const certContainer = document.getElementById('certificates-list');
+            if (certs.length === 0) {
+                certContainer.innerHTML = '<p class="text-xs text-slate-500 italic col-span-2">No certificates issued yet.</p>';
+            } else {
+                certContainer.innerHTML = certs.map(c => `
+                    <div class="p-4 rounded-xl bg-emerald-950/10 border border-emerald-500/20 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-mono text-emerald-400">CERTIFICATE OF EXCELLENCE</p>
+                            <h4 class="text-sm font-bold text-white">${c.course_name}</h4>
+                            <p class="text-[10px] font-mono text-slate-400">Issued: ${c.issue_date} • Verification: ${c.verification_code}</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-mono text-xs border border-emerald-500/30">Grade: ${c.grade}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function renderSkillList(containerId, list, color) {
+            const container = document.getElementById(containerId);
+            if (!list || list.length === 0) {
+                container.innerHTML = '<p class="text-[11px] text-slate-600 font-mono py-1">None recorded</p>';
+                return;
+            }
+            container.innerHTML = list.map(s => `
+                <div class="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between text-xs">
+                    <span class="text-slate-200 font-medium">${s.skill_name}</span>
+                    <span class="text-[10px] font-mono text-${color}-400 px-1.5 py-0.5 rounded bg-${color}-500/10 border border-${color}-500/20">${s.category}</span>
+                </div>
+            `).join('');
+        }
+
+        window.addEventListener('DOMContentLoaded', loadPassport);
+    </script>
+</body>
+</html>

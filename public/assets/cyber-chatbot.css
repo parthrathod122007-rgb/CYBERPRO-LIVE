@@ -1,0 +1,2185 @@
+/* ==========================================================================
+   CYBERPRO AI ASSISTANT v2.0 — ULTRA-PREMIUM FUTURISTIC NEURAL UI/UX
+   Glassmorphism Obsidian Command Surface, Holographic Glow & Fluid Motion
+   ========================================================================== */
+
+:root {
+  --cyber-ai-green: #39ff14;
+  --cyber-ai-mint: #00f5a0;
+  --cyber-ai-cyan: #00d2ff;
+  --cyber-ai-obsidian: #050807;
+  --cyber-ai-surface: rgba(7, 12, 10, 0.90);
+  --cyber-ai-card: rgba(11, 19, 15, 0.84);
+  --cyber-ai-glass: rgba(15, 27, 20, 0.65);
+  --cyber-ai-border: rgba(57, 255, 20, 0.26);
+  --cyber-ai-border-bright: rgba(57, 255, 20, 0.65);
+  --cyber-ai-text: #eef4f0;
+  --cyber-ai-muted: #94a39b;
+  --cyber-ai-font-display: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+  --cyber-ai-font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --cyber-ai-font-mono: 'Fira Code', 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+#cyber-chatbot-launcher,
+#cyber-chatbot-launcher *,
+#cyber-chatbot-window,
+#cyber-chatbot-window * {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   KEYFRAME MOTION SYSTEM (GPU-ACCELERATED ONLY)
+   ========================================================================== */
+@keyframes cyberLauncherFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -5px, 0); }
+}
+
+@keyframes cyberOrbSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes cyberPulseWave {
+  0% { transform: scale(0.92); opacity: 0.75; }
+  65% { transform: scale(1.42); opacity: 0; }
+  100% { transform: scale(1.42); opacity: 0; }
+}
+
+@keyframes cyberStatusBlink {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px var(--cyber-ai-green); }
+  50% { opacity: 0.45; transform: scale(0.82); box-shadow: 0 0 2px var(--cyber-ai-green); }
+}
+
+@keyframes cyberScanSweep {
+  0% { transform: translateX(-100%); opacity: 0; }
+  25% { opacity: 0.85; }
+  75% { opacity: 0.85; }
+  100% { transform: translateX(220%); opacity: 0; }
+}
+
+@keyframes cyberParticleDrift {
+  0% { transform: translate3d(0, 0, 0) scale(0.9); opacity: 0.15; }
+  35% { opacity: 0.6; }
+  70% { transform: translate3d(var(--px, 12px), var(--py, -36px), 0) scale(1.15); opacity: 0.4; }
+  100% { transform: translate3d(calc(var(--px, 12px) * -0.4), calc(var(--py, -36px) * 1.4), 0) scale(0.8); opacity: 0.1; }
+}
+
+@keyframes cyberMsgReveal {
+  0% { opacity: 0; transform: translate3d(0, 10px, 0) scale(0.98); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes cyberEqBar {
+  0%, 100% { transform: scaleY(0.35); opacity: 0.5; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes cyberCursorBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes cyberComposerAttention {
+  0% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7), 0 0 28px rgba(57, 255, 20, 0.45); }
+  100% { box-shadow: 0 0 0 12px rgba(57, 255, 20, 0), 0 0 20px rgba(57, 255, 20, 0.18); }
+}
+
+/* ==========================================================================
+   1. PREMIUM FLOATING AI LAUNCHER DOCK
+   ========================================================================== */
+#cyber-chatbot-launcher {
+  position: fixed;
+  bottom: 28px;
+  right: 26px;
+  width: 66px;
+  height: 66px;
+  border-radius: 22px;
+  background: radial-gradient(circle at 28% 24%, rgba(28, 66, 38, 0.96) 0%, rgba(8, 17, 12, 0.96) 62%, rgba(3, 7, 5, 0.98) 100%);
+  border: 1.5px solid rgba(57, 255, 20, 0.58);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.92),
+    0 0 28px rgba(57, 255, 20, 0.34),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22),
+    inset 0 -10px 20px rgba(0, 245, 160, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99990;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  animation: cyberLauncherFloat 4.2s ease-in-out infinite;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease, border-radius 0.28s ease;
+  outline: none;
+}
+
+#cyber-chatbot-launcher::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  padding: 1.5px;
+  background: conic-gradient(from 0deg, rgba(57, 255, 20, 0.85), rgba(0, 245, 160, 0.12), rgba(0, 210, 255, 0.55), rgba(57, 255, 20, 0.08), rgba(57, 255, 20, 0.85));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.72;
+  transition: opacity 0.3s ease;
+}
+
+#cyber-chatbot-launcher:hover,
+#cyber-chatbot-launcher:focus-visible {
+  animation-play-state: paused;
+  transform: translate3d(0, -4px, 0) scale(1.07);
+  border-color: var(--cyber-ai-green);
+  box-shadow:
+    0 22px 46px rgba(0, 0, 0, 0.95),
+    0 0 38px rgba(57, 255, 20, 0.62),
+    0 0 65px rgba(0, 245, 160, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3),
+    inset 0 -8px 22px rgba(57, 255, 20, 0.26);
+}
+
+#cyber-chatbot-launcher:hover::before {
+  opacity: 1;
+}
+
+#cyber-chatbot-launcher:active {
+  transform: translate3d(0, 0, 0) scale(0.95);
+}
+
+#cyber-chatbot-launcher.is-open {
+  animation-play-state: paused;
+  border-radius: 50%;
+  border-color: rgba(0, 245, 160, 0.8);
+}
+
+#cyber-chatbot-launcher.is-open::before {
+  border-radius: 50%;
+}
+
+/* Outer Pulsing Sonar Rings */
+.cyber-launcher-sonar {
+  position: absolute;
+  inset: -8px;
+  border-radius: 28px;
+  border: 1.5px solid rgba(57, 255, 20, 0.52);
+  pointer-events: none;
+  animation: cyberPulseWave 2.8s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+.cyber-launcher-sonar-2 {
+  position: absolute;
+  inset: -8px;
+  border-radius: 28px;
+  border: 1px solid rgba(0, 245, 160, 0.36);
+  pointer-events: none;
+  animation: cyberPulseWave 2.8s 1.4s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+#cyber-chatbot-launcher.is-open .cyber-launcher-sonar,
+#cyber-chatbot-launcher.is-open .cyber-launcher-sonar-2 {
+  opacity: 0;
+  animation: none;
+}
+
+/* Orbital Ring Inside Orb */
+.cyber-launcher-orbit {
+  position: absolute;
+  inset: 7px;
+  border-radius: 15px;
+  border: 1px dashed rgba(0, 245, 160, 0.35);
+  pointer-events: none;
+  animation: cyberOrbSpin 16s linear infinite;
+}
+
+#cyber-chatbot-launcher.is-open .cyber-launcher-orbit {
+  border-radius: 50%;
+}
+
+/* Custom Animated Hacker/Robot AI Launcher Icon */
+.cyber-launcher-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 17px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.78));
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.cyber-launcher-mask-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.cyber-mask-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 6px rgba(57, 255, 20, 0.55));
+}
+
+.cyber-launcher-close-icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  z-index: 2;
+  color: var(--cyber-ai-mint);
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+}
+
+#cyber-chatbot-launcher.is-open .cyber-launcher-icon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+#cyber-chatbot-launcher.is-open .cyber-launcher-close-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Live Status Pill: "AI ONLINE" */
+.cyber-launcher-status-pill {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2.5px 8px;
+  border-radius: 999px;
+  background: rgba(4, 9, 6, 0.96);
+  border: 1px solid rgba(57, 255, 20, 0.65);
+  color: #e6ffec;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.92), 0 0 12px rgba(57, 255, 20, 0.35);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.cyber-launcher-status-pill .status-dot {
+  width: 5.5px;
+  height: 5.5px;
+  border-radius: 50%;
+  background: var(--cyber-ai-green);
+  animation: cyberStatusBlink 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Hover Tooltip: "Meet CyberPro AI" */
+.cyber-launcher-tooltip {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translate3d(10px, -50%, 0);
+  background: linear-gradient(135deg, rgba(9, 17, 12, 0.96) 0%, rgba(5, 10, 7, 0.98) 100%);
+  border: 1px solid rgba(57, 255, 20, 0.48);
+  color: #ffffff;
+  font-family: var(--cyber-ai-font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 8px 14px;
+  border-radius: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.88), 0 0 20px rgba(57, 255, 20, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cyber-launcher-tooltip::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(6, 11, 8, 0.98);
+  border-right: 1px solid rgba(57, 255, 20, 0.48);
+  border-top: 1px solid rgba(57, 255, 20, 0.48);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.cyber-launcher-tooltip .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyber-ai-green);
+  box-shadow: 0 0 8px var(--cyber-ai-green);
+}
+
+.cyber-launcher-tooltip .tip-sub {
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--cyber-ai-mint);
+  padding-left: 6px;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+#cyber-chatbot-launcher:hover .cyber-launcher-tooltip,
+#cyber-chatbot-launcher:focus-visible .cyber-launcher-tooltip {
+  opacity: 1;
+  transform: translate3d(0, -50%, 0);
+}
+
+#cyber-chatbot-launcher.is-open .cyber-launcher-tooltip {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   2. MAIN FUTURISTIC GLASS ASSISTANT WINDOW & PARTICLES
+   ========================================================================== */
+#cyber-chatbot-window {
+  position: fixed;
+  bottom: 112px;
+  right: 26px;
+  width: 432px;
+  height: 660px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 128px);
+  border-radius: 22px;
+  background: linear-gradient(165deg, rgba(8, 14, 11, 0.94) 0%, rgba(5, 8, 7, 0.97) 55%, rgba(6, 13, 10, 0.96) 100%);
+  border: 1px solid rgba(57, 255, 20, 0.34);
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.96),
+    0 0 46px rgba(57, 255, 20, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 0 40px rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(26px) saturate(145%);
+  -webkit-backdrop-filter: blur(26px) saturate(145%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 99995;
+  transform-origin: bottom right;
+  transform: translate3d(0, 26px, 0) scale(0.86);
+  opacity: 0;
+  filter: blur(6px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.28s ease,
+    filter 0.32s ease,
+    width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.36s;
+  user-select: text;
+  font-family: var(--cyber-ai-font-body);
+  color: var(--cyber-ai-text);
+}
+
+#cyber-chatbot-window.open {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  filter: none;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.28s ease,
+    filter 0.32s ease,
+    width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0s;
+}
+
+#cyber-chatbot-window.maximized {
+  width: min(760px, calc(100vw - 48px));
+  height: min(840px, calc(100vh - 120px));
+}
+
+/* Subtle Outer Neon Edge Aura */
+#cyber-chatbot-window::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 5%, var(--cyber-ai-green) 35%, var(--cyber-ai-mint) 60%, var(--cyber-ai-cyan) 85%, transparent 98%);
+  box-shadow: 0 0 18px rgba(57, 255, 20, 0.75);
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* Futuristic Background Particles & Holographic Mesh */
+.cyber-ambient-fx {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cyber-ambient-fx::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(57, 255, 20, 0.11) 0%, transparent 70%),
+    radial-gradient(ellipse 90% 44% at 50% 100%, rgba(0, 255, 65, 0.22) 0%, rgba(0, 165, 60, 0.08) 48%, transparent 74%),
+    linear-gradient(rgba(57, 255, 20, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 28px 28px, 28px 28px;
+}
+
+.cyber-ambient-fx::after {
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 136px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 65, 0.55) 50%, transparent 100%);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.48);
+  opacity: 0.65;
+}
+
+.cyber-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--cyber-ai-green);
+  box-shadow: 0 0 8px var(--cyber-ai-green);
+  animation: cyberParticleDrift var(--dur, 9s) var(--delay, 0s) ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.cyber-particle.mint {
+  background: var(--cyber-ai-mint);
+  box-shadow: 0 0 8px var(--cyber-ai-mint);
+}
+
+.cyber-particle.cyan {
+  background: var(--cyber-ai-cyan);
+  box-shadow: 0 0 7px var(--cyber-ai-cyan);
+}
+
+/* ==========================================================================
+   3. HEADER & CONTROLS + INLINE DRAWERS
+   ========================================================================== */
+.cyber-chat-header {
+  position: relative;
+  z-index: 5;
+  padding: 14px 16px;
+  background: linear-gradient(180deg, rgba(13, 24, 17, 0.94) 0%, rgba(7, 12, 9, 0.88) 100%);
+  border-bottom: 1px solid rgba(57, 255, 20, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.cyber-header-scan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.08), transparent);
+  transform: skewX(-18deg) translateX(-120%);
+  pointer-events: none;
+}
+
+#cyber-chatbot-window.open .cyber-header-scan {
+  animation: cyberScanSweep 2.4s 0.15s ease-out 1;
+}
+
+.cyber-header-left {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.cyber-header-avatar {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  background: radial-gradient(circle at 30% 30%, rgba(28, 60, 35, 0.95) 0%, rgba(4, 9, 6, 0.98) 100%);
+  border: 1px solid rgba(57, 255, 20, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(57, 255, 20, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+}
+
+.cyber-header-avatar svg {
+  width: 23px;
+  height: 23px;
+  color: var(--cyber-ai-green);
+  filter: drop-shadow(0 0 6px rgba(57, 255, 20, 0.75));
+}
+
+.cyber-avatar-status {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cyber-ai-green);
+  border: 2px solid #060a08;
+  animation: cyberStatusBlink 2s infinite;
+}
+
+.cyber-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cyber-header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cyber-header-title {
+  font-family: var(--cyber-ai-font-display);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  background: linear-gradient(90deg, #ffffff 0%, #86efac 45%, #39ff14 80%, #00d2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cyber-header-chip {
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--cyber-ai-mint);
+  background: rgba(0, 245, 160, 0.12);
+  border: 1px solid rgba(0, 245, 160, 0.35);
+  padding: 1px 6px;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.cyber-header-sub {
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--cyber-ai-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cyber-header-sub .indicator {
+  color: var(--cyber-ai-green);
+  text-shadow: 0 0 8px var(--cyber-ai-green);
+}
+
+.cyber-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.cyber-action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #a3b3aa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-action-btn:hover,
+.cyber-action-btn.active {
+  background: rgba(57, 255, 20, 0.15);
+  border-color: rgba(57, 255, 20, 0.72);
+  color: var(--cyber-ai-green);
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.28);
+  transform: translateY(-1px);
+}
+
+.cyber-action-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.14);
+  border-color: rgba(248, 113, 113, 0.65);
+  color: #fca5a5;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
+}
+
+.cyber-action-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Inline Confirmation Bar (Clear Chat) */
+.cyber-confirm-bar {
+  position: relative;
+  z-index: 5;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 16px;
+  background: rgba(15, 26, 18, 0.96);
+  border-bottom: 1px solid rgba(57, 255, 20, 0.28);
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 10.5px;
+  color: #e2ede6;
+  animation: cyberMsgReveal 0.18s ease-out;
+}
+
+.cyber-confirm-bar.visible {
+  display: flex;
+}
+
+.cyber-confirm-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.cyber-confirm-btn {
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  transition: all 0.18s ease;
+}
+
+.cyber-confirm-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.cyber-confirm-btn.primary {
+  background: rgba(57, 255, 20, 0.18);
+  border-color: rgba(57, 255, 20, 0.65);
+  color: var(--cyber-ai-green);
+}
+
+.cyber-confirm-btn.primary:hover {
+  background: var(--cyber-ai-green);
+  color: #030704;
+}
+
+/* Conversation History Drawer */
+.cyber-history-drawer {
+  position: absolute;
+  top: 68px;
+  left: 0;
+  right: 0;
+  max-height: 290px;
+  background: rgba(6, 12, 9, 0.97);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(57, 255, 20, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
+  z-index: 8;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: cyberMsgReveal 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-history-drawer.visible {
+  display: flex;
+}
+
+.cyber-history-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--cyber-ai-mint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cyber-history-new-btn {
+  background: rgba(57, 255, 20, 0.14);
+  border: 1px solid rgba(57, 255, 20, 0.48);
+  color: var(--cyber-ai-green);
+  padding: 3px 9px;
+  border-radius: 7px;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.cyber-history-new-btn:hover {
+  background: var(--cyber-ai-green);
+  color: #030704;
+}
+
+.cyber-history-list {
+  overflow-y: auto;
+  padding: 8px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cyber-history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-align: left;
+  width: 100%;
+  color: #d6e2db;
+}
+
+.cyber-history-item:hover,
+.cyber-history-item.active {
+  background: rgba(57, 255, 20, 0.1);
+  border-color: rgba(57, 255, 20, 0.45);
+}
+
+.cyber-history-item-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+}
+
+.cyber-history-item-meta {
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 9px;
+  color: var(--cyber-ai-muted);
+  flex-shrink: 0;
+}
+
+.cyber-history-empty {
+  padding: 16px 8px;
+  text-align: center;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 10.5px;
+  color: var(--cyber-ai-muted);
+}
+
+/* ==========================================================================
+   4. MESSAGE STREAM AREA & SCROLLBAR
+   ========================================================================== */
+.cyber-chat-messages {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-behavior: smooth;
+}
+
+.cyber-chat-messages::-webkit-scrollbar {
+  width: 5px;
+}
+
+.cyber-chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cyber-chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(57, 255, 20, 0.28);
+  border-radius: 10px;
+}
+
+.cyber-chat-messages::-webkit-scrollbar-thumb:hover {
+  background: var(--cyber-ai-green);
+}
+
+/* ==========================================================================
+   5. INTELLIGENT WELCOME SCREEN
+   ========================================================================== */
+.cyber-welcome-hero {
+  position: relative;
+  border-radius: 18px;
+  padding: 18px 16px 16px;
+  background: linear-gradient(155deg, rgba(14, 30, 20, 0.82) 0%, rgba(7, 13, 10, 0.94) 65%, rgba(6, 17, 16, 0.92) 100%);
+  border: 1px solid rgba(57, 255, 20, 0.34);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.72),
+    0 0 24px rgba(57, 255, 20, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  animation: cyberMsgReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-welcome-hero::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(57, 255, 20, 0.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cyber-welcome-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.cyber-welcome-orb {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: radial-gradient(circle at 30% 30%, rgba(57, 255, 20, 0.25), rgba(5, 11, 8, 0.98));
+  border: 1px solid rgba(57, 255, 20, 0.58);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyber-ai-green);
+  box-shadow: 0 0 18px rgba(57, 255, 20, 0.32);
+  flex-shrink: 0;
+}
+
+.cyber-welcome-orb svg {
+  width: 23px;
+  height: 23px;
+}
+
+.cyber-welcome-orb img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.cyber-welcome-heading-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cyber-welcome-title {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #f4fff6;
+}
+
+.cyber-welcome-title span {
+  color: #5dff89;
+}
+
+.cyber-welcome-subtitle {
+  margin: 0;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--cyber-ai-mint);
+  letter-spacing: 0.04em;
+}
+
+.cyber-welcome-intro {
+  font-size: 12.5px;
+  line-height: 1.58;
+  color: #dbe6df;
+  min-height: 38px;
+}
+
+.cyber-welcome-intro .typing-caret {
+  display: inline-block;
+  width: 2px;
+  height: 13px;
+  background: var(--cyber-ai-green);
+  margin-left: 2px;
+  vertical-align: -2px;
+  animation: cyberCursorBlink 0.75s infinite;
+}
+
+/* 6 Quick Action Suggestions */
+.cyber-quick-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.cyber-quick-label {
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(57, 255, 20, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cyber-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.cyber-quick-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 10px;
+  border-radius: 11px;
+  background: rgba(12, 22, 16, 0.86);
+  border: 1px solid rgba(57, 255, 20, 0.24);
+  color: #e2ede6;
+  font-family: var(--cyber-ai-font-body);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+}
+
+.cyber-quick-btn:hover {
+  background: rgba(57, 255, 20, 0.14);
+  border-color: rgba(57, 255, 20, 0.85);
+  color: #ffffff;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px rgba(57, 255, 20, 0.22);
+}
+
+.cyber-quick-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.cyber-quick-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: rgba(57, 255, 20, 0.12);
+  border: 1px solid rgba(57, 255, 20, 0.35);
+  color: var(--cyber-ai-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cyber-quick-icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+.cyber-quick-btn[data-accent="cyan"] .cyber-quick-icon {
+  background: rgba(0, 210, 255, 0.12);
+  border-color: rgba(0, 210, 255, 0.38);
+  color: var(--cyber-ai-cyan);
+}
+
+.cyber-quick-btn[data-accent="mint"] .cyber-quick-icon {
+  background: rgba(0, 245, 160, 0.12);
+  border-color: rgba(0, 245, 160, 0.38);
+  color: var(--cyber-ai-mint);
+}
+
+/* ==========================================================================
+   6. MESSAGE BUBBLES, AVATARS, CODE BLOCKS & TOOLBAR
+   ========================================================================== */
+.cyber-message-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  max-width: 100%;
+  animation: cyberMsgReveal 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-message-row.user {
+  justify-content: flex-end;
+}
+
+.cyber-message-row.assistant {
+  justify-content: flex-start;
+}
+
+.cyber-msg-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+  background: radial-gradient(circle at 30% 30%, rgba(25, 52, 31, 0.95), #040806);
+  border: 1px solid rgba(57, 255, 20, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyber-ai-green);
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.22);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cyber-msg-avatar.user-avatar {
+  background: radial-gradient(circle at 30% 30%, rgba(12, 42, 46, 0.95), #050c0e);
+  border-color: rgba(0, 245, 160, 0.5);
+  color: var(--cyber-ai-mint);
+  box-shadow: 0 0 12px rgba(0, 245, 160, 0.2);
+}
+
+.cyber-msg-avatar svg {
+  width: 15px;
+  height: 15px;
+}
+
+.cyber-message-bubble {
+  max-width: calc(100% - 42px);
+  padding: 12px 14px;
+  border-radius: 16px;
+  font-size: 13px;
+  line-height: 1.62;
+  position: relative;
+  word-break: break-word;
+  backdrop-filter: blur(10px);
+}
+
+.cyber-message-row.user .cyber-message-bubble {
+  background: linear-gradient(135deg, rgba(19, 52, 27, 0.92) 0%, rgba(10, 28, 16, 0.96) 100%);
+  border: 1px solid rgba(57, 255, 20, 0.46);
+  border-bottom-right-radius: 4px;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65), 0 0 16px rgba(57, 255, 20, 0.14);
+}
+
+.cyber-message-row.assistant .cyber-message-bubble {
+  background: linear-gradient(155deg, rgba(13, 22, 17, 0.94) 0%, rgba(7, 12, 9, 0.97) 100%);
+  border: 1px solid rgba(57, 255, 20, 0.24);
+  border-left: 2px solid rgba(57, 255, 20, 0.65);
+  border-bottom-left-radius: 4px;
+  color: #e6eee9;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.cyber-message-row.assistant.error-msg .cyber-message-bubble {
+  background: linear-gradient(155deg, rgba(38, 12, 15, 0.92) 0%, rgba(18, 7, 9, 0.96) 100%);
+  border-color: rgba(248, 113, 113, 0.48);
+  border-left: 2px solid #ef4444;
+}
+
+/* Smooth Stream Caret */
+.cyber-stream-caret {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: var(--cyber-ai-green);
+  box-shadow: 0 0 8px var(--cyber-ai-green);
+  margin-left: 3px;
+  vertical-align: -2px;
+  animation: cyberCursorBlink 0.7s infinite;
+}
+
+/* Markdown Typography & Lists */
+.cyber-msg-body h2,
+.cyber-msg-body h3,
+.cyber-msg-body h4 {
+  font-family: var(--cyber-ai-font-display);
+  color: #ffffff;
+  margin: 8px 0 6px;
+  line-height: 1.3;
+}
+.cyber-msg-body h2 { font-size: 14px; color: var(--cyber-ai-mint); }
+.cyber-msg-body h3 { font-size: 13.5px; color: var(--cyber-ai-green); }
+.cyber-msg-body p { margin: 0 0 8px; }
+.cyber-msg-body p:last-child { margin-bottom: 0; }
+.cyber-msg-body strong { color: #86efac; font-weight: 700; }
+.cyber-msg-body em { color: #cbd5e1; font-style: italic; }
+.cyber-msg-body ul,
+.cyber-msg-body ol {
+  margin: 6px 0 9px 18px;
+  padding: 0;
+}
+.cyber-msg-body li {
+  margin-bottom: 4px;
+}
+.cyber-msg-body blockquote {
+  margin: 8px 0;
+  padding: 6px 10px;
+  border-left: 2px solid var(--cyber-ai-mint);
+  background: rgba(0, 245, 160, 0.06);
+  border-radius: 0 8px 8px 0;
+  color: #cbd5e1;
+  font-size: 12px;
+}
+.cyber-msg-body a {
+  color: var(--cyber-ai-mint);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+.cyber-msg-body a:hover {
+  color: var(--cyber-ai-green);
+}
+.cyber-msg-body :not(pre) > code {
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(57, 255, 20, 0.28);
+  color: var(--cyber-ai-green);
+  padding: 1.5px 5px;
+  border-radius: 5px;
+}
+
+/* Styled Code Block with Copy Header */
+.cyber-code-block {
+  margin: 8px 0;
+  border-radius: 10px;
+  background: rgba(3, 6, 5, 0.94);
+  border: 1px solid rgba(57, 255, 20, 0.28);
+  overflow: hidden;
+}
+
+.cyber-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  background: rgba(14, 26, 18, 0.9);
+  border-bottom: 1px solid rgba(57, 255, 20, 0.18);
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 9.5px;
+  color: var(--cyber-ai-muted);
+  text-transform: uppercase;
+}
+
+.cyber-code-copy {
+  background: transparent;
+  border: 1px solid rgba(57, 255, 20, 0.25);
+  color: var(--cyber-ai-mint);
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.cyber-code-copy:hover {
+  background: rgba(57, 255, 20, 0.18);
+  color: #ffffff;
+}
+
+.cyber-code-block pre {
+  margin: 0;
+  padding: 10px 12px;
+  overflow-x: auto;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #b9f6ca;
+}
+
+/* Inline CTA Link Button */
+.cyber-inline-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 7px 13px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #39ff14 0%, #00f5a0 100%);
+  color: #020503 !important;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 10.5px;
+  font-weight: 800;
+  text-decoration: none !important;
+  box-shadow: 0 0 18px rgba(57, 255, 20, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.cyber-inline-cta:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 0 24px rgba(57, 255, 20, 0.65);
+}
+
+/* Error Retry CTA */
+.cyber-error-retry-btn {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(248, 113, 113, 0.14);
+  border: 1px solid rgba(248, 113, 113, 0.55);
+  color: #fecaca;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.cyber-error-retry-btn:hover {
+  background: rgba(248, 113, 113, 0.26);
+  color: #ffffff;
+}
+
+/* Message Footer Metadata & Actions (Copy / Regenerate) */
+.cyber-msg-meta {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.cyber-msg-tag-stopped {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 8px;
+}
+
+.cyber-msg-tools {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cyber-tool-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.62);
+  cursor: pointer;
+  padding: 3px 7px;
+  border-radius: 6px;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.18s ease;
+}
+
+.cyber-tool-btn:hover {
+  color: var(--cyber-ai-green);
+  border-color: rgba(57, 255, 20, 0.45);
+  background: rgba(57, 255, 20, 0.1);
+}
+
+.cyber-tool-btn svg {
+  width: 11px;
+  height: 11px;
+}
+
+/* ==========================================================================
+   7. ANIMATED AI TYPING / ANALYZING INDICATOR
+   ========================================================================== */
+.cyber-typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(12, 23, 17, 0.92), rgba(7, 13, 10, 0.96));
+  border: 1px solid rgba(57, 255, 20, 0.34);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65), 0 0 14px rgba(57, 255, 20, 0.12);
+}
+
+.cyber-eq-bars {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  height: 14px;
+}
+
+.cyber-eq-bar {
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--cyber-ai-green);
+  transform-origin: center;
+  animation: cyberEqBar 0.9s infinite ease-in-out;
+}
+
+.cyber-eq-bar:nth-child(2) { animation-delay: 0.15s; background: var(--cyber-ai-mint); }
+.cyber-eq-bar:nth-child(3) { animation-delay: 0.3s; background: var(--cyber-ai-cyan); }
+.cyber-eq-bar:nth-child(4) { animation-delay: 0.45s; background: var(--cyber-ai-green); }
+
+.cyber-typing-text {
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: #bcebd0;
+  letter-spacing: 0.03em;
+}
+
+/* ==========================================================================
+   8. COMPOSER FOOTER, 4-OPTION MODEL SELECTOR & RESPONSIVENESS
+   ========================================================================== */
+.cyber-chat-footer {
+  position: relative;
+  z-index: 30;
+  padding: 12px 14px 12px;
+  background: rgba(5, 10, 7, 0.96);
+  border-top: 1px solid rgba(57, 255, 20, 0.22);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cyber-composer-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 11px 9px 13px;
+  border-radius: 17px;
+  background: linear-gradient(160deg, rgba(11, 22, 16, 0.92), rgba(6, 12, 9, 0.96));
+  border: 1px solid rgba(57, 255, 20, 0.34);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 24px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.cyber-composer-box:focus-within {
+  border-color: var(--cyber-ai-green);
+  box-shadow: 0 0 24px rgba(57, 255, 20, 0.24), inset 0 0 10px rgba(57, 255, 20, 0.06);
+}
+
+.cyber-composer-box.pulse-focus {
+  border-color: var(--cyber-ai-green);
+  animation: cyberComposerAttention 0.85s ease-out 2;
+}
+
+.cyber-chat-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 2px 2px 0;
+  color: #ffffff;
+  font-family: var(--cyber-ai-font-body);
+  font-size: 13.5px;
+  line-height: 1.45;
+  outline: none;
+  resize: none;
+  max-height: 100px;
+  min-height: 26px;
+  overflow-y: auto;
+}
+
+.cyber-chat-input:placeholder-shown {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cyber-chat-input::placeholder {
+  color: rgba(203, 213, 207, 0.48);
+  font-size: 13px;
+}
+
+.cyber-composer-toolbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cyber-composer-left,
+.cyber-composer-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.cyber-plus-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(226, 247, 232, 0.85);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.cyber-plus-btn:hover,
+.cyber-plus-btn.open {
+  background: rgba(57, 255, 20, 0.12);
+  border-color: rgba(57, 255, 20, 0.48);
+  color: #00ff41;
+}
+
+.cyber-plus-menu {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  width: min(255px, calc(100vw - 44px));
+  padding: 6px;
+  border-radius: 13px;
+  background: rgba(6, 14, 10, 0.98);
+  border: 1px solid rgba(57, 255, 20, 0.34);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.92), 0 0 24px rgba(0, 255, 65, 0.14);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: none;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 60;
+}
+
+.cyber-plus-menu.visible {
+  display: flex;
+  animation: cyberMsgReveal 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-plus-item {
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #dcfce7;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cyber-plus-item:hover {
+  background: rgba(57, 255, 20, 0.12);
+  border-color: rgba(57, 255, 20, 0.28);
+  color: #ffffff;
+}
+
+/* Claude/ChatGPT/Gemini 4-Option Model Selector */
+.cyber-model-wrap {
+  position: relative;
+}
+
+.cyber-model-trigger {
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background: rgba(16, 30, 21, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #dcfce7;
+  font-family: var(--cyber-ai-font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+}
+
+.cyber-model-trigger:hover,
+.cyber-model-trigger.open {
+  border-color: rgba(57, 255, 20, 0.55);
+  background: rgba(20, 42, 28, 0.95);
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(0, 255, 65, 0.16);
+}
+
+.cyber-model-chevron {
+  width: 12px;
+  height: 12px;
+  opacity: 0.8;
+  transition: transform 0.2s ease;
+}
+
+.cyber-model-trigger.open .cyber-model-chevron {
+  transform: rotate(180deg);
+}
+
+.cyber-model-menu {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  width: min(296px, calc(100vw - 44px));
+  padding: 7px;
+  border-radius: 15px;
+  background: linear-gradient(170deg, rgba(8, 19, 13, 0.98), rgba(5, 11, 8, 0.99));
+  border: 1px solid rgba(57, 255, 20, 0.36);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.95), 0 0 28px rgba(0, 255, 65, 0.16);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 65;
+}
+
+.cyber-model-menu.visible {
+  display: flex;
+  animation: cyberMsgReveal 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-model-option {
+  width: 100%;
+  text-align: left;
+  padding: 9px 11px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.cyber-model-option:hover {
+  background: rgba(57, 255, 20, 0.08);
+  border-color: rgba(57, 255, 20, 0.2);
+}
+
+.cyber-model-option.active {
+  background: rgba(0, 255, 65, 0.14);
+  border-color: rgba(57, 255, 20, 0.42);
+}
+
+.cyber-model-opt-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cyber-model-opt-title {
+  font-family: var(--cyber-ai-font-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #f0fff4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cyber-model-opt-desc {
+  font-family: var(--cyber-ai-font-body);
+  font-size: 10.5px;
+  color: rgba(203, 213, 207, 0.72);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cyber-model-opt-check {
+  color: #00ff41;
+  font-size: 14px;
+  font-weight: 800;
+  opacity: 0;
+  flex-shrink: 0;
+}
+
+.cyber-model-option.active .cyber-model-opt-check {
+  opacity: 1;
+}
+
+.cyber-send-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00ff41 0%, #00f5a0 100%);
+  border: none;
+  color: #021107;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  box-shadow: 0 0 18px rgba(0, 255, 65, 0.45);
+}
+
+.cyber-send-btn:hover:not(:disabled) {
+  transform: translateY(-1px) scale(1.06);
+  box-shadow: 0 0 26px rgba(0, 255, 65, 0.78);
+}
+
+.cyber-send-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.cyber-send-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* Stop Generation Mode Button */
+.cyber-stop-btn {
+  height: 34px;
+  padding: 0 11px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(239, 68, 68, 0.22));
+  border: 1px solid rgba(251, 191, 36, 0.72);
+  color: #fde68a;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.28);
+  transition: all 0.18s ease;
+}
+
+.cyber-stop-btn:hover {
+  background: rgba(239, 68, 68, 0.32);
+  border-color: #f87171;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.45);
+}
+
+.cyber-stop-btn .stop-square {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: #fbbf24;
+  box-shadow: 0 0 8px #fbbf24;
+}
+
+.cyber-composer-box.is-generating .cyber-send-btn {
+  display: none;
+}
+
+.cyber-composer-box.is-generating .cyber-stop-btn {
+  display: inline-flex;
+}
+
+/* 4 Quick Capability Mode Chips Below Composer */
+.cyber-mode-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.cyber-mode-chip {
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(11, 23, 16, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cfe9d7;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.cyber-mode-chip .chip-ico {
+  color: #00ff41;
+  font-weight: 700;
+}
+
+.cyber-mode-chip:hover,
+.cyber-mode-chip.active {
+  background: rgba(0, 255, 65, 0.13);
+  border-color: rgba(57, 255, 20, 0.45);
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(0, 255, 65, 0.16);
+}
+
+.cyber-chat-subfooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--cyber-ai-font-mono);
+  font-size: 9px;
+  color: rgba(203, 213, 207, 0.55);
+  padding: 0 4px;
+}
+
+.cyber-subfooter-link {
+  color: var(--cyber-ai-mint);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.18s ease;
+}
+
+.cyber-subfooter-link:hover {
+  color: var(--cyber-ai-green);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   9. TABLET & MOBILE RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 1024px) and (min-width: 641px) {
+  #cyber-chatbot-window {
+    width: min(420px, calc(100vw - 36px));
+    height: min(620px, calc(100vh - 124px));
+    bottom: 104px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  #cyber-chatbot-launcher {
+    bottom: 22px;
+    right: 18px;
+    width: 58px;
+    height: 58px;
+    border-radius: 19px;
+  }
+
+  .cyber-launcher-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+  }
+
+  .cyber-launcher-tooltip {
+    display: none;
+  }
+
+  #cyber-chatbot-window {
+    inset: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-width: 100vw;
+    max-height: 100dvh;
+    border-radius: 0;
+    border: none;
+  }
+
+  .cyber-quick-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cyber-header-chip,
+  #cyber-chat-maximize {
+    display: none;
+  }
+
+  .cyber-header-actions {
+    gap: 5px;
+  }
+
+  .cyber-header-title {
+    font-size: 13.5px;
+  }
+
+  .cyber-message-bubble {
+    max-width: calc(100% - 36px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #cyber-chatbot-launcher,
+  .cyber-launcher-sonar,
+  .cyber-launcher-sonar-2,
+  .cyber-launcher-orbit,
+  .cyber-particle,
+  .cyber-eq-bar {
+    animation: none !important;
+  }
+  #cyber-chatbot-window {
+    transition: opacity 0.15s ease !important;
+  }
+}
+
+/* ==========================================================================
+   9. VISIONOS LIQUID GLASS UPGRADE — CHATBOT LAUNCHER, WINDOW & COMPOSER
+   ========================================================================== */
+#cyber-chatbot-launcher {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(10, 26, 17, 0.68) 45%,
+    rgba(4, 10, 7, 0.84) 100%
+  ) !important;
+  backdrop-filter: blur(22px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(190%) !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  box-shadow:
+    0 18px 46px rgba(0, 0, 0, 0.65),
+    0 0 32px rgba(57, 255, 20, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -1px 0 rgba(0, 217, 245, 0.18) !important;
+}
+
+#cyber-chatbot-window {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.085) 0%,
+    rgba(10, 22, 16, 0.72) 28%,
+    rgba(5, 11, 8, 0.86) 100%
+  ) !important;
+  backdrop-filter: blur(30px) saturate(195%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(195%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.20) !important;
+  box-shadow:
+    0 32px 92px rgba(0, 0, 0, 0.86),
+    0 0 54px rgba(57, 255, 20, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(0, 217, 245, 0.14) !important;
+}
+
+.cyber-chat-header {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(10, 24, 16, 0.62) 100%
+  ) !important;
+  backdrop-filter: blur(20px) saturate(185%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(185%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+.cyber-history-drawer {
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.075) 0%,
+    rgba(8, 18, 13, 0.86) 40%,
+    rgba(4, 9, 7, 0.94) 100%
+  ) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+
+.cyber-quick-btn,
+.cyber-history-item {
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.085) 0%,
+    rgba(11, 24, 17, 0.56) 55%,
+    rgba(5, 12, 9, 0.72) 100%
+  ) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24) !important;
+}
+
+.cyber-quick-btn:hover,
+.cyber-history-item:hover,
+.cyber-history-item.active {
+  border-color: rgba(57, 255, 20, 0.54) !important;
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.48),
+    0 0 22px rgba(57, 255, 20, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34) !important;
+}
+
+.cyber-message-row.assistant .cyber-message-bubble {
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(12, 24, 18, 0.64) 48%,
+    rgba(6, 13, 10, 0.78) 100%
+  ) !important;
+  backdrop-filter: blur(18px) saturate(185%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(185%) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  border-left: 2px solid rgba(57, 255, 20, 0.72) !important;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.52),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+}
+
+.cyber-message-row.user .cyber-message-bubble {
+  background: linear-gradient(
+    145deg,
+    rgba(57, 255, 20, 0.22) 0%,
+    rgba(14, 48, 25, 0.74) 48%,
+    rgba(8, 26, 15, 0.84) 100%
+  ) !important;
+  backdrop-filter: blur(18px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(190%) !important;
+  border-color: rgba(57, 255, 20, 0.48) !important;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.48),
+    0 0 20px rgba(57, 255, 20, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+}
+
+.cyber-composer-box {
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.095) 0%,
+    rgba(11, 24, 17, 0.72) 45%,
+    rgba(5, 11, 8, 0.86) 100%
+  ) !important;
+  backdrop-filter: blur(22px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(190%) !important;
+  border-color: rgba(255, 255, 255, 0.20) !important;
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.56),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26) !important;
+}
+
+.cyber-composer-box:focus-within {
+  border-color: rgba(57, 255, 20, 0.68) !important;
+  box-shadow:
+    0 0 28px rgba(57, 255, 20, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32) !important;
+}
+
+.cyber-plus-menu,
+.cyber-model-menu {
+  background: linear-gradient(
+    160deg,
+    rgba(8, 20, 14, 0.96) 0%,
+    rgba(5, 13, 9, 0.98) 42%,
+    rgba(3, 8, 5, 0.99) 100%
+  ) !important;
+  backdrop-filter: blur(26px) saturate(185%) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(185%) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.88),
+    0 0 28px rgba(57, 255, 20, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+}
+
+.cyber-mode-chip,
+.cyber-model-trigger,
+.cyber-plus-btn {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(10, 24, 16, 0.64)) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+}
+
+.cyber-mode-chip:hover,
+.cyber-mode-chip.active {
+  background: linear-gradient(145deg, rgba(57, 255, 20, 0.22), rgba(11, 34, 19, 0.82)) !important;
+  border-color: rgba(57, 255, 20, 0.72) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 0 18px rgba(57, 255, 20, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+}
+
+.cyber-code-block {
+  background: rgba(3, 8, 6, 0.78) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(57, 255, 20, 0.32) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+}
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  #cyber-chatbot-window {
+    backdrop-filter: blur(10px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+  }
+
+  .cyber-quick-btn,
+  .cyber-history-item,
+  .cyber-message-row.assistant .cyber-message-bubble,
+  .cyber-message-row.user .cyber-message-bubble,
+  .cyber-mode-chip,
+  .cyber-code-block {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* ==========================================================================
+   10. POSITION STABILITY LOCK (PREVENT JUMP / SHIFT ON HOVER OR CLICK)
+   ========================================================================== */
+#cyber-chatbot-launcher,
+#cyber-chatbot-launcher:hover,
+#cyber-chatbot-launcher:focus,
+#cyber-chatbot-launcher:focus-visible,
+#cyber-chatbot-launcher:active,
+#cyber-chatbot-launcher.is-open,
+#cyber-chatbot-launcher.is-open:hover,
+#cyber-chatbot-launcher.is-open:active {
+  position: fixed !important;
+  bottom: 28px !important;
+  right: 26px !important;
+  top: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  border-radius: 22px !important;
+  animation: none !important;
+  transform: none !important;
+  translate: none !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#cyber-chatbot-launcher.is-open::before,
+#cyber-chatbot-launcher.is-open .cyber-launcher-orbit {
+  border-radius: 24px !important;
+}
+
+#cyber-chatbot-window,
+#cyber-chatbot-window.open {
+  position: fixed !important;
+  bottom: 112px !important;
+  right: 26px !important;
+  top: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  transition: opacity 0.22s ease, width 0.24s ease, height 0.24s ease, visibility 0s linear 0s !important;
+}
+
+#cyber-chatbot-window:not(.open) {
+  transform: scale(0.98) !important;
+  filter: none !important;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s !important;
+}
+
+#cyber-chatbot-window.open {
+  transform: none !important;
+  filter: none !important;
+}
+
+#cyber-chatbot-window button,
+#cyber-chatbot-window button:hover,
+#cyber-chatbot-window button:active {
+  transform: none !important;
+  translate: none !important;
+}
+
+@media (max-width: 1024px) and (min-width: 641px) {
+  #cyber-chatbot-window,
+  #cyber-chatbot-window.open {
+    bottom: 104px !important;
+    right: 20px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  #cyber-chatbot-launcher,
+  #cyber-chatbot-launcher:hover,
+  #cyber-chatbot-launcher:focus,
+  #cyber-chatbot-launcher:focus-visible,
+  #cyber-chatbot-launcher:active,
+  #cyber-chatbot-launcher.is-open {
+    bottom: 22px !important;
+    right: 18px !important;
+    border-radius: 19px !important;
+  }
+
+  #cyber-chatbot-window,
+  #cyber-chatbot-window.open {
+    inset: 0 !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}
+
+

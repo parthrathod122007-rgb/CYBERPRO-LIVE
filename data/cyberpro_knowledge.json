@@ -1,0 +1,151 @@
+{
+  "company": {
+    "name": "CYBERPRO Defense Academy",
+    "brand": "CYBERPRO",
+    "founder_and_owner": "Parth Rathod",
+    "established": "2026",
+    "tagline": "Defend. Learn. Execute.",
+    "mission": "Practical cybersecurity learning platform for structured study, enterprise labs, live mentorship, and real-world career progress.",
+    "overview": "CYBERPRO is a premier cybersecurity education academy and technical training platform dedicated to training the next generation of ethical hackers, security analysts, and cyber defense professionals through hands-on labs, live mentoring, and industry-grade tools."
+  },
+  "contact": {
+    "phone": "+91 76668762325",
+    "whatsapp_admissions": "+91 76668762325",
+    "whatsapp_chat_url": "https://wa.me/9176668762325?text=Hi%20CYBERPRO%20Team%2C%20I%20would%20like%20more%20information%20about%20your%20cybersecurity%20programs.",
+    "whatsapp_channel_url": "https://whatsapp.com/channel/0029VbEBQmnDZ4LY3ot9dp2x",
+    "telegram_community_url": "https://t.me/+UYQe9IMi-b0xOWE1",
+    "support_email": "support@cyberpro.com",
+    "admissions_email": "admissions@cyberpro.com",
+    "support_hours": "24/7 AI Assistance • Admissions desk responds within 1-2 hours",
+    "website_url": "http://127.0.0.1:8000/",
+    "telegram_chat_url": "https://t.me/+917666872325"
+  },
+  "flagship_program": {
+    "name": "CyberPro Certified Cybersecurity Expert (CCCE)",
+    "code": "CCCE",
+    "cohort": "Live Cohort 03 (Currently Enrolling)",
+    "duration": "6 Months Live Practical Training",
+    "modules_count": 27,
+    "tools_count": "180+ Enterprise Tools",
+    "delivery_mode": "Live Interactive Classes & Guided Hands-on Labs",
+    "highlights": [
+      "27 Deep-Dive Technical Modules",
+      "6 Months Structured Journey with Live Mentorship",
+      "180+ Industry-standard tools (Wireshark, Burp Suite, Nmap, Metasploit, Splunk, Ghidra, Kali Linux, etc.)",
+      "Hands-on Virtual Cloud Labs & Target Environments",
+      "Capstone Real-World Penetration Testing Projects",
+      "Official Verified Certificate of Completion with Cryptographic ID",
+      "Direct Mentor Code & Lab Review",
+      "Career Placement Support & Interview Preparation"
+    ],
+    "learning_levels": {
+      "beginner": {
+        "title": "Level 1: Cybersecurity Foundations",
+        "description": "Networking protocols (TCP/IP, OSI model), Linux terminal & Bash scripting, Virtualization, Cyber Hygiene, Security Operations fundamentals (SOC 101)."
+      },
+      "intermediate": {
+        "title": "Level 2: Offensive & Defensive Operations",
+        "description": "Web Application Penetration Testing (OWASP Top 10 vulnerabilities like SQLi, XSS, CSRF, SSRF), Network Security, Cryptography, Vulnerability Assessment & Management."
+      },
+      "advanced": {
+        "title": "Level 3: Enterprise Defense & Threat Intelligence",
+        "description": "Red Teaming methodology, Active Directory attacks & defense, Incident Response & Digital Forensics, Malware Analysis basics, Cloud Security (AWS & Azure)."
+      }
+    },
+    "schedule_options": "Flexible evening and weekend batches tailored for working professionals and university students.",
+    "how_to_enroll": "Visit the CCCE program page (/ccce) or click 'Talk to Admissions' to connect directly with the admissions team on WhatsApp (+91 76668762325)."
+  },
+  "fees_and_pricing_policy": {
+    "policy_statement": "CYBERPRO maintains transparent, fair pricing tailored to student backgrounds, cohort schedules, and scholarship qualifications.",
+    "guideline": "Admissions provides exact fee schedules, ongoing early-bird scholarship discounts, and no-cost EMI / installment payment options upon consultation.",
+    "ai_instruction": "Never invent or quote specific numeric fees, discounts, or guarantees. Always invite the visitor to speak with our admissions desk on WhatsApp (+91 76668762325) for the latest scholarship and fee structure."
+  },
+  "lms_instructions": {
+    "name": "CYBERPRO Student LMS (Learning Management System)",
+    "access_url": "/lms",
+    "how_to_login": "Click the 'STUDENT LMS' button in the top navigation bar (or 'ENTER STUDENT LMS' in the hero section, or 'LMS Login' on subpages) to open the Student LMS portal modal. Use the 'Student Login' tab (or 'Register' to create an account / 'Recovery' to reset your password), complete the Cloudflare human verification check, and click 'Sign In as Student'.",
+    "dashboard_location": "The Student Dashboard is inside the CYBERPRO Student LMS (/lms), under the left sidebar 'Learning -> Dashboard'.",
+    "dashboard_sections": {
+      "learning": [
+        "Dashboard (Main student overview, active progress & quick actions)",
+        "Live Class (Live instructor-led sessions & classroom join panel)",
+        "Recorded Courses (Lifetime on-demand lecture video library)",
+        "Class Schedule (Upcoming batch calendar & timings)",
+        "Books and Notes (Downloadable study books, PDFs & cheat sheets)",
+        "Tools & Softwares (Cybersecurity tools & lab software repository)",
+        "CyberPro AI (Built-in student AI study assistant)",
+        "Labs (Guided practical cybersecurity lab exercises)",
+        "Quizzes (Interactive topic assessments)"
+      ],
+      "performance": [
+        "Leaderboard (Student XP & cohort rankings)",
+        "Support (Direct student helpdesk & technical support)"
+      ],
+      "profile_and_rewards": [
+        "Profile and Certificates (Student profile & verified CCCE certificates)",
+        "Refer & Earn (Referral code sharing & reward tracking)",
+        "Payments (Fee & payment status)"
+      ],
+      "cyber_ecosystem": [
+        "Cyber Range (LIVE LABS interactive cloud sandbox)",
+        "Skill Passport (PORTFOLIO skill record)",
+        "Bug Bounty Arena (BOUNTIES challenge track)",
+        "SOC Simulator (SIEM IR incident triage simulator)",
+        "Career & Jobs (HIRING placement & job board)",
+        "My Projects (CAPSTONE practical project submissions)"
+      ]
+    },
+    "dashboard_features": [
+      "Student Dashboard Overview & Progress Tracker",
+      "Live Class Join Panel & Class Schedule",
+      "Recorded Courses Video Library (re-watch any lecture anytime)",
+      "Books and Notes, Cheat Sheets & Tools Repository",
+      "Hands-on Cyber Range, Labs, SOC Simulator & Quizzes",
+      "Student Leaderboard XP, Refer & Earn, and Skill Passport",
+      "Profile and Official Digital Certificate Verification"
+    ],
+    "troubleshooting": "If you experience login issues, verify that you completed the Cloudflare verification challenge. If password reset is needed, use the 'Recovery' tab on the Student LMS login screen or contact support at support@cyberpro.com or +91 76668762325."
+  },
+  "website_navigation": {
+    "home": "/ — Hero section with interactive 3D Threat Globe, 'ENTER STUDENT LMS' and 'EXPLORE OUR COURSES' buttons, header navigation, 'JOIN CYBERPRO' drawer, and Student LMS login modal.",
+    "programs": "/programs — Courses & structured training pathways overview.",
+    "ccce": "/ccce — Flagship CCCE 6-Month, 27-Module, 180+ Tools Live Program syllabus & registration.",
+    "about": "/about — About CYBERPRO Defense Academy, practical learning model & founder information.",
+    "contact": "/contact — Admissions enquiry form, WhatsApp/Telegram channels, email and support phone (+91 76668762325).",
+    "student_lms": "/lms — Authenticated Student Dashboard with Live Class, Recorded Courses, Labs, Quizzes, Books & Notes, Leaderboard, Certificates & Refer and Earn.",
+    "legal": "/privacy-policy/, /terms-conditions/, /cancellation-refund/, /shipping-policy/, /guidelines/ — Official platform policy documents accessible from the footer and Legal menu."
+  },
+  "faqs": [
+    {
+      "question": "What is CYBERPRO?",
+      "answer": "CYBERPRO Defense Academy is a practical, next-generation cybersecurity training academy founded by Parth Rathod. We provide structured training, live mentorship, hands-on virtual labs, and career support through our flagship CCCE program."
+    },
+    {
+      "question": "Who can join the CCCE program?",
+      "answer": "CCCE is structured for beginners, university students, IT professionals transitioning to cybersecurity, and security analysts wanting practical certification. No prior coding experience is required—we start from networking and Linux foundations."
+    },
+    {
+      "question": "Are classes live or recorded?",
+      "answer": "CCCE classes are conducted live by industry practitioners with interactive Q&A and guided lab demonstrations. All sessions are recorded and made available immediately in your Student LMS dashboard for lifetime review."
+    },
+    {
+      "question": "Do I get a certificate upon completion?",
+      "answer": "Yes! Graduates who complete the coursework, practical lab assessments, and capstone project receive the verified CyberPro Certified Cybersecurity Expert (CCCE) credential with an online verification ID."
+    },
+    {
+      "question": "How do I enroll or get syllabus details?",
+      "answer": "You can explore the full curriculum on the CCCE page (/ccce) or contact our admissions desk via WhatsApp at +91 76668762325 for syllabus PDF, batch timings, and scholarship details."
+    },
+    {
+      "question": "Can I get technical support for my LMS account?",
+      "answer": "Yes, our technical team is available 24/7. You can reach out directly via WhatsApp (+91 76668762325), email support@cyberpro.com, or drop your query right here in this chat!"
+    }
+  ],
+  "ethical_policy": {
+    "statement": "CYBERPRO trains ethical cybersecurity professionals for defensive and authorized penetration testing purposes only.",
+    "rules": [
+      "Never teach or assist with illegal hacking, unauthorized system access, malware deployment, or black-hat operations.",
+      "All demonstrations and lab exercises must be performed strictly within authorized lab environments."
+    ]
+  }
+}

@@ -1,0 +1,1343 @@
+/* ========================================================================== */
+/* CYBERPRO - NEXT-GEN FUTURISTIC CYBERNETIC INTERACTIVE ENGINE (CSS)         */
+/* ========================================================================== */
+
+/* Smooth global page scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ========================================================================== */
+/* 1. UNIVERSAL PRIMARY BUTTONS (NEON GREEN GLOW & LASER SHINE)               */
+/* ========================================================================== */
+.cyber-btn-primary,
+.btn-fill,
+.btn-neon-fill,
+a.btn-fill,
+button.btn-fill,
+button[type="submit"]:not(.plain-btn) {
+    position: relative !important;
+    overflow: hidden !important;
+    background: #39ff14 !important;
+    color: #000000 !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    box-shadow: 0 0 22px rgba(57, 255, 20, 0.45) !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.25s ease,
+                filter 0.2s ease !important;
+    cursor: pointer !important;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Laser sweep shine effect */
+.cyber-btn-primary::before,
+.btn-fill::before,
+.btn-neon-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Hover elevation & intense neon surge */
+.cyber-btn-primary:hover,
+.btn-fill:hover,
+.btn-neon-fill:hover,
+button[type="submit"]:hover:not(.plain-btn) {
+    transform: translateY(-2.5px) scale(1.025) !important;
+    background: #46ff24 !important;
+    box-shadow: 0 0 35px rgba(57, 255, 20, 0.85),
+                0 0 70px rgba(57, 255, 20, 0.4),
+                inset 0 0 15px rgba(255, 255, 255, 0.4) !important;
+}
+
+.cyber-btn-primary:hover::before,
+.btn-fill:hover::before,
+.btn-neon-fill:hover::before {
+    left: 140%;
+}
+
+/* Click / Active depression tactile state */
+.cyber-btn-primary:active,
+.btn-fill:active,
+.btn-neon-fill:active,
+button[type="submit"]:active:not(.plain-btn) {
+    transform: translateY(1.5px) scale(0.975) !important;
+    box-shadow: 0 0 45px rgba(57, 255, 20, 1.0) !important;
+    filter: brightness(1.2) !important;
+}
+
+/* ========================================================================== */
+/* 2. UNIVERSAL SECONDARY & OUTLINE BUTTONS (GLASSMORPHIC & NEON BORDER)      */
+/* ========================================================================== */
+.cyber-btn-secondary,
+.btn-soft,
+.btn-neon-outline,
+a.btn-soft,
+button.btn-soft {
+    position: relative !important;
+    overflow: hidden !important;
+    background: rgba(6, 14, 8, 0.82) !important;
+    border: 1px solid rgba(57, 255, 20, 0.45) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.85), inset 0 0 15px rgba(57, 255, 20, 0.08) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer !important;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cyber-btn-secondary::before,
+.btn-soft::before,
+.btn-neon-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.45), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.cyber-btn-secondary:hover,
+.btn-soft:hover,
+.btn-neon-outline:hover {
+    transform: translateY(-2.5px) scale(1.025) !important;
+    border-color: #39ff14 !important;
+    color: #39ff14 !important;
+    background: rgba(10, 26, 15, 0.92) !important;
+    box-shadow: 0 0 30px rgba(57, 255, 20, 0.55), inset 0 0 20px rgba(57, 255, 20, 0.22) !important;
+}
+
+.cyber-btn-secondary:hover::before,
+.btn-soft:hover::before,
+.btn-neon-outline:hover::before {
+    left: 140%;
+}
+
+.cyber-btn-secondary:active,
+.btn-soft:active,
+.btn-neon-outline:active {
+    transform: translateY(1.5px) scale(0.975) !important;
+    background: rgba(57, 255, 20, 0.25) !important;
+    box-shadow: 0 0 45px rgba(57, 255, 20, 0.85) !important;
+}
+
+/* Micro-interaction: inner arrow / icon shifts forward */
+.cyber-btn-primary svg, .cyber-btn-primary .btn-arrow,
+.cyber-btn-secondary svg, .cyber-btn-secondary .btn-arrow,
+.btn-fill svg, .btn-neon-fill svg,
+.btn-soft svg, .btn-neon-outline svg {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.cyber-btn-primary:hover svg, .cyber-btn-primary:hover .btn-arrow,
+.cyber-btn-secondary:hover svg, .cyber-btn-secondary:hover .btn-arrow,
+.btn-fill:hover svg, .btn-neon-fill:hover svg,
+.btn-soft:hover svg, .btn-neon-outline:hover svg {
+    transform: translateX(4px) !important;
+}
+
+/* ========================================================================== */
+/* 3. DYNAMIC UNIVERSAL CLICK RIPPLE & TACTILE SHOCKWAVE                     */
+/* ========================================================================== */
+@keyframes cyberShockwave {
+    0% {
+        transform: translate(-50%, -50%) scale(0.08);
+        opacity: 1;
+    }
+    40% {
+        opacity: 0.85;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3.2);
+        opacity: 0;
+    }
+}
+
+.cyber-click-ripple {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.75) 0%, rgba(57, 255, 20, 0.25) 45%, transparent 70%);
+    border: 1px solid rgba(57, 255, 20, 0.9);
+    box-shadow: 0 0 25px #39ff14;
+    animation: cyberShockwave 0.45s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    z-index: 99999;
+}
+
+/* ========================================================================== */
+/* 4. INTERACTIVE CARDS, TILES & MODULES                                      */
+/* ========================================================================== */
+.card-flagship,
+.card-muted,
+.course-card,
+.info-card,
+.feature-card,
+.cyber-ccce-card,
+.stat-card,
+.tool-chip {
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative;
+}
+
+.card-flagship:hover,
+.card-muted:hover,
+.course-card:hover,
+.info-card:hover,
+.feature-card:hover,
+.cyber-ccce-card:hover,
+.stat-card:hover {
+    transform: translateY(-5px) scale(1.012) !important;
+    border-color: rgba(57, 255, 20, 0.75) !important;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85),
+                0 0 35px rgba(57, 255, 20, 0.3),
+                inset 0 0 20px rgba(57, 255, 20, 0.08) !important;
+}
+
+.tool-chip:hover {
+    transform: translateY(-2px) scale(1.06) !important;
+    border-color: #39ff14 !important;
+    color: #39ff14 !important;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4) !important;
+}
+
+/* ========================================================================== */
+/* 5. CCCE SYLLABUS EXPLORER RAIL & DETAILS FOLDERS                           */
+/* ========================================================================== */
+.phase-folder {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(57, 255, 20, 0.2) !important;
+    border-radius: 12px;
+    background: rgba(8, 14, 10, 0.65);
+    backdrop-filter: blur(8px);
+    margin-bottom: 12px;
+}
+
+.phase-folder summary {
+    cursor: pointer;
+    user-select: none;
+    padding: 16px 20px;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.phase-folder summary:hover {
+    color: #39ff14;
+    background: rgba(57, 255, 20, 0.05);
+}
+
+.phase-folder[open] {
+    border-color: rgba(57, 255, 20, 0.5) !important;
+    box-shadow: 0 0 30px rgba(57, 255, 20, 0.15) !important;
+}
+
+.phase-folder.phase-highlight {
+    animation: folderPulse 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes folderPulse {
+    0% {
+        border-color: #39ff14 !important;
+        box-shadow: 0 0 50px rgba(57, 255, 20, 0.9), inset 0 0 25px rgba(57, 255, 20, 0.25) !important;
+    }
+    100% {
+        border-color: rgba(57, 255, 20, 0.5) !important;
+        box-shadow: 0 0 30px rgba(57, 255, 20, 0.15) !important;
+    }
+}
+
+.explorer-rail a {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative !important;
+    display: block;
+    padding: 8px 12px 8px 16px;
+    border-radius: 6px;
+}
+
+.explorer-rail a:hover {
+    color: #39ff14 !important;
+    background: rgba(57, 255, 20, 0.08);
+    transform: translateX(5px);
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.7);
+}
+
+.explorer-rail a.active-phase {
+    color: #39ff14 !important;
+    font-weight: 800;
+    background: rgba(57, 255, 20, 0.12);
+}
+
+.explorer-rail a.active-phase::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 20%;
+    height: 60%;
+    width: 3px;
+    background: #39ff14;
+    box-shadow: 0 0 8px #39ff14;
+    border-radius: 2px;
+}
+
+/* ========================================================================== */
+/* 6. CONTACT TOPIC PILLS                                                     */
+/* ========================================================================== */
+.topic-pill {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer !important;
+}
+
+.topic-pill:hover {
+    transform: translateY(-2.5px) scale(1.03) !important;
+    border-color: #39ff14 !important;
+    color: #39ff14 !important;
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.4) !important;
+}
+
+.topic-pill.is-active {
+    background: rgba(57, 255, 20, 0.18) !important;
+    border-color: #39ff14 !important;
+    color: #39ff14 !important;
+    box-shadow: 0 0 24px rgba(57, 255, 20, 0.55), inset 0 0 12px rgba(57, 255, 20, 0.2) !important;
+}
+
+/* ========================================================================== */
+/* 7. CYBERNETIC SUBMISSION LOADING SPINNER                                  */
+/* ========================================================================== */
+.cyber-submitting {
+    pointer-events: none !important;
+    opacity: 0.85 !important;
+    position: relative !important;
+    filter: brightness(1.1);
+}
+
+.cyber-spinner {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid rgba(0, 0, 0, 0.35);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: cyberSpin 0.55s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+@keyframes cyberSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========================================================================== */
+/* 8. CLOSE BUTTONS & MODAL CONTROLS                                         */
+/* ========================================================================== */
+.modal-close-cyber {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer !important;
+}
+
+.modal-close-cyber:hover {
+    transform: rotate(90deg) scale(1.15) !important;
+    color: #39ff14 !important;
+    border-color: #39ff14 !important;
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.7) !important;
+}
+
+/* ========================================================================== */
+/* ULTRA-PREMIUM HOLOGRAPHIC CYBER BUTTONS (DESK & SHOWCASE CTA)              */
+/* ========================================================================== */
+.cyber-btn-holo-prime {
+    position: relative !important;
+    overflow: hidden !important;
+    background: linear-gradient(135deg, #39ff14 0%, #00f5a0 50%, #00d2ff 100%) !important;
+    color: #000000 !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.04em !important;
+    border: none !important;
+    border-radius: 14px !important;
+    box-shadow: 0 4px 22px rgba(57, 255, 20, 0.45), 0 0 45px rgba(0, 245, 160, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.2s ease !important;
+    cursor: pointer !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.cyber-btn-holo-prime::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.cyber-btn-holo-prime:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 12px 35px rgba(57, 255, 20, 0.65), 0 0 65px rgba(0, 245, 160, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.95) !important;
+    filter: brightness(1.08);
+}
+
+.cyber-btn-holo-prime:hover::before {
+    left: 140%;
+}
+
+.cyber-btn-holo-prime:active {
+    transform: translateY(1.5px) scale(0.98) !important;
+    box-shadow: 0 2px 15px rgba(57, 255, 20, 0.8) !important;
+}
+
+.cyber-btn-holo-prime svg, .cyber-btn-holo-prime .btn-arrow {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.cyber-btn-holo-prime:hover svg, .cyber-btn-holo-prime:hover .btn-arrow {
+    transform: translateX(5px) scale(1.1) !important;
+}
+
+.cyber-btn-holo-glass {
+    position: relative !important;
+    overflow: hidden !important;
+    background: linear-gradient(135deg, rgba(14, 22, 17, 0.92) 0%, rgba(7, 12, 9, 0.96) 100%) !important;
+    border: 1px solid rgba(57, 255, 20, 0.38) !important;
+    border-radius: 14px !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(57, 255, 20, 0.08) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.cyber-btn-holo-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.45), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.cyber-btn-holo-glass:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    border-color: #39ff14 !important;
+    color: #39ff14 !important;
+    background: linear-gradient(135deg, rgba(18, 30, 22, 0.95) 0%, rgba(10, 18, 13, 0.98) 100%) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 30px rgba(57, 255, 20, 0.45), inset 0 0 20px rgba(57, 255, 20, 0.18) !important;
+}
+
+.cyber-btn-holo-glass:hover::before {
+    left: 140%;
+}
+
+.cyber-btn-holo-glass:active {
+    transform: translateY(1.5px) scale(0.98) !important;
+    background: rgba(57, 255, 20, 0.25) !important;
+}
+
+.cyber-btn-holo-glass svg, .cyber-btn-holo-glass .btn-arrow {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.cyber-btn-holo-glass:hover svg, .cyber-btn-holo-glass:hover .btn-arrow {
+    transform: translateX(5px) scale(1.1) !important;
+}
+
+/* ========================================================================== */
+/* GLASSY UI HEADER BAR + 3D NAVBAR LOGO (PUBLIC HEADER ONLY)                 */
+/* ========================================================================== */
+#landing-page > nav,
+#cyberpro-header-nav {
+    position: fixed !important;
+    top: 12px !important;
+    left: clamp(10px, 2vw, 28px) !important;
+    right: clamp(10px, 2vw, 28px) !important;
+    width: auto !important;
+    max-width: 1460px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    height: 68px !important;
+    padding-left: clamp(14px, 2vw, 28px) !important;
+    padding-right: clamp(14px, 2vw, 28px) !important;
+    border-radius: 20px !important;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(14, 26, 19, 0.44) 48%,
+        rgba(57, 255, 20, 0.07) 100%
+    ) !important;
+    background-color: transparent !important;
+    backdrop-filter: blur(22px) saturate(185%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(185%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-bottom: 1px solid rgba(57, 255, 20, 0.28) !important;
+    box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.55),
+        0 0 28px rgba(57, 255, 20, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.30),
+        inset 0 -1px 0 rgba(57, 255, 20, 0.16) !important;
+    transition: background 0.35s ease, box-shadow 0.35s ease, height 0.35s ease, border-color 0.35s ease !important;
+}
+
+#landing-page > nav::before,
+#cyberpro-header-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        105deg,
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0.03) 28%,
+        transparent 58%,
+        rgba(57, 255, 20, 0.06) 100%
+    );
+    pointer-events: none;
+}
+
+#landing-page > nav > :not(.m-land-menu),
+#cyberpro-header-nav > * {
+    position: relative;
+    z-index: 2;
+}
+
+#landing-page > nav > .m-land-menu {
+    position: absolute !important;
+}
+
+#landing-page > nav.m-scrolled {
+    height: 62px !important;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(8, 16, 11, 0.66) 52%,
+        rgba(57, 255, 20, 0.09) 100%
+    ) !important;
+    backdrop-filter: blur(26px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(26px) saturate(200%) !important;
+    border-color: rgba(255, 255, 255, 0.20) !important;
+    border-bottom-color: rgba(57, 255, 20, 0.42) !important;
+    box-shadow:
+        0 18px 46px rgba(0, 0, 0, 0.72),
+        0 0 34px rgba(57, 255, 20, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.32) !important;
+}
+
+/* Inner glassy pill tray for desktop nav links */
+#landing-page > nav > div:nth-child(2),
+#cyberpro-header-nav > div:nth-child(2) {
+    gap: clamp(14px, 1.5vw, 24px) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.11) !important;
+    border-radius: 999px !important;
+    padding: 6px 18px !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+}
+
+@media (min-width: 1024px) {
+    #cyberpro-header-nav > div:nth-child(2) {
+        display: flex !important;
+        align-items: center !important;
+    }
+}
+
+@media (min-width: 640px) {
+    #cyberpro-header-nav > div:nth-child(3) > a[href="/programs"] {
+        display: flex !important;
+    }
+}
+
+/* Header Glass Action Buttons */
+#landing-page > nav .m-nav-right,
+#landing-page > nav > div:nth-child(3),
+#cyberpro-header-nav > div:nth-child(3) {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex-shrink: 0 !important;
+}
+
+#landing-page > nav .m-land-ham {
+    display: none !important;
+}
+
+#landing-page > nav #btn-show-login,
+#landing-page > nav #btn-header-menu,
+#cyberpro-header-nav > div:nth-child(3) > a:first-child,
+#cyberpro-header-nav > div:nth-child(3) > button#btn-header-menu {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 4px 14px rgba(0, 0, 0, 0.32) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    white-space: nowrap !important;
+}
+
+#landing-page > nav #btn-show-login:hover,
+#landing-page > nav #btn-header-menu:hover,
+#cyberpro-header-nav > div:nth-child(3) > a:first-child:hover,
+#cyberpro-header-nav > div:nth-child(3) > button#btn-header-menu:hover {
+    background: linear-gradient(135deg, rgba(57, 255, 20, 0.18), rgba(255, 255, 255, 0.08)) !important;
+    border-color: rgba(57, 255, 20, 0.72) !important;
+    box-shadow: 0 0 22px rgba(57, 255, 20, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.38) !important;
+}
+
+#landing-page > nav > div:nth-child(3) > button[onclick*="openAdmissionsModal"],
+#cyberpro-header-nav > div:nth-child(3) > a[href="/programs"] {
+    background: linear-gradient(135deg, rgba(57, 255, 20, 0.94), rgba(0, 245, 160, 0.88)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.75), 0 6px 24px rgba(57, 255, 20, 0.42) !important;
+    white-space: nowrap !important;
+}
+
+#cyberpro-nav-drawer {
+    position: fixed !important;
+    top: 88px !important;
+    left: auto !important;
+    right: clamp(12px, 2vw, 32px) !important;
+    background: linear-gradient(145deg, rgba(16, 26, 20, 0.78), rgba(7, 11, 9, 0.88)) !important;
+    backdrop-filter: blur(24px) saturate(185%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(185%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.20) !important;
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.78), inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+}
+
+/* Brand Text subtle 3D lift */
+#landing-page > nav > a:first-child .tracking-wider,
+#cyberpro-header-nav > a:first-child .tracking-wider {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 0 14px rgba(57, 255, 20, 0.32);
+}
+
+/* True 3D Extruded Header Logo Prism */
+.cyber-nav-logo-3d {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 460px;
+    transform-style: preserve-3d;
+}
+
+.cyber-nav-logo-ring {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1px solid rgba(57, 255, 20, 0.5);
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.32);
+    pointer-events: none;
+    transform-style: preserve-3d;
+    animation: cyberNavRingSpin 5.5s linear infinite;
+}
+
+.cyber-nav-logo-ring::before {
+    content: "";
+    position: absolute;
+    top: -2.5px;
+    left: 50%;
+    width: 4.5px;
+    height: 4.5px;
+    border-radius: 50%;
+    background: #39ff14;
+    box-shadow: 0 0 8px #39ff14;
+    transform: translateX(-50%);
+}
+
+@keyframes cyberNavRingSpin {
+    0% { transform: rotateX(68deg) rotateY(-18deg) rotateZ(0deg); }
+    100% { transform: rotateX(68deg) rotateY(-18deg) rotateZ(360deg); }
+}
+
+.cyber-nav-logo-cube {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    transform-style: preserve-3d;
+    animation: cyberNavCubeOrbit 6s ease-in-out infinite;
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+a.group:hover .cyber-nav-logo-cube {
+    animation-play-state: paused;
+    transform: translateY(-1px) rotateX(18deg) rotateY(205deg) scale(1.06);
+}
+
+@keyframes cyberNavCubeOrbit {
+    0%   { transform: translateY(0px) rotateX(14deg) rotateY(-24deg); }
+    50%  { transform: translateY(-2px) rotateX(16deg) rotateY(24deg); }
+    100% { transform: translateY(0px) rotateX(14deg) rotateY(-24deg); }
+}
+
+.cyber-nav-logo-face,
+.cyber-nav-logo-slice {
+    position: absolute;
+    inset: 0;
+    border-radius: 11px;
+    pointer-events: none;
+}
+
+.cyber-nav-logo-slice {
+    border: 1px solid rgba(57, 255, 20, 0.52);
+    background: linear-gradient(135deg, rgba(14, 78, 36, 0.9), rgba(3, 24, 12, 0.95));
+}
+
+.cyber-nav-logo-face {
+    backface-visibility: hidden;
+    border: 1.5px solid rgba(255, 255, 255, 0.34);
+}
+
+.cyber-nav-logo-front {
+    transform: translateZ(4px);
+    background: linear-gradient(145deg, rgba(22, 62, 36, 0.86), rgba(4, 14, 9, 0.92));
+    box-shadow:
+        0 0 18px rgba(57, 255, 20, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.48),
+        inset 0 -1px 4px rgba(57, 255, 20, 0.25);
+}
+
+.cyber-nav-logo-back {
+    transform: translateZ(-6px) rotateY(180deg);
+    background: linear-gradient(145deg, rgba(16, 48, 28, 0.92), rgba(4, 12, 8, 0.96));
+    box-shadow: 0 0 22px rgba(57, 255, 20, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.cyber-nav-logo-back img,
+.cyber-nav-logo-emblem img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 8px rgba(57, 255, 20, 0.85));
+}
+
+.cyber-nav-logo-emblem {
+    position: absolute;
+    inset: 4px;
+    transform: translateZ(9px);
+    backface-visibility: hidden;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1023px) {
+    #landing-page > nav > div:nth-child(3),
+    #cyberpro-header-nav > div:nth-child(3) {
+        margin-left: auto !important;
+    }
+}
+
+@media (max-width: 639px) {
+    #landing-page > nav,
+    #cyberpro-header-nav {
+        top: 8px !important;
+        left: 8px !important;
+        right: 8px !important;
+        height: 60px !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        border-radius: 16px !important;
+    }
+    #landing-page > nav > a:first-child,
+    #cyberpro-header-nav > a:first-child {
+        gap: 9px !important;
+        min-width: 0 !important;
+    }
+    .cyber-nav-logo-3d {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+    }
+    .cyber-nav-logo-cube {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    #landing-page > nav > a:first-child .tracking-wider,
+    #cyberpro-header-nav > a:first-child .tracking-wider {
+        font-size: 16px !important;
+    }
+    #landing-page > nav #btn-show-login,
+    #cyberpro-header-nav > div:nth-child(3) > a:first-child {
+        padding: 7px 10px !important;
+        font-size: 10.5px !important;
+        gap: 5px !important;
+        border-radius: 10px !important;
+    }
+    #landing-page > nav #btn-header-menu,
+    #cyberpro-header-nav > div:nth-child(3) > button#btn-header-menu {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        border-radius: 10px !important;
+    }
+    #cyberpro-nav-drawer {
+        top: 76px !important;
+        right: 8px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cyber-nav-logo-ring,
+    .cyber-nav-logo-cube {
+        animation: none !important;
+    }
+}
+
+/* ==========================================================================
+   CYBERPRO VISIONOS LIQUID GLASS & FUTURISTIC UI SYSTEM (SITE-WIDE)
+   Cohesive translucent crystal glass surfaces, liquid meniscus bevels,
+   prismatic hover refraction & ambient depth across Home, Subpages & Modals.
+   ========================================================================== */
+
+:root {
+    --cyber-liquid-bg: linear-gradient(
+        155deg,
+        rgba(255, 255, 255, 0.085) 0%,
+        rgba(14, 30, 21, 0.56) 36%,
+        rgba(6, 14, 10, 0.72) 100%
+    );
+    --cyber-liquid-bg-strong: linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.11) 0%,
+        rgba(12, 26, 18, 0.72) 32%,
+        rgba(5, 11, 8, 0.84) 100%
+    );
+    --cyber-liquid-pill: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(14, 32, 22, 0.58) 55%,
+        rgba(6, 15, 11, 0.72) 100%
+    );
+    --cyber-liquid-border: rgba(255, 255, 255, 0.15);
+    --cyber-liquid-border-hover: rgba(57, 255, 20, 0.48);
+    --cyber-liquid-shadow:
+        0 18px 46px rgba(0, 0, 0, 0.52),
+        0 0 28px rgba(57, 255, 20, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.24),
+        inset 0 -1px 0 rgba(57, 255, 20, 0.12);
+    --cyber-liquid-shadow-hover:
+        0 26px 64px rgba(0, 0, 0, 0.68),
+        0 0 38px rgba(57, 255, 20, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.36),
+        inset 0 -1px 0 rgba(0, 217, 245, 0.22);
+}
+
+/* Enhanced Liquid Aurora Ambient Field behind frosted glass (soft multi-stop radial — ZERO GPU blur filter pass!) */
+#m-aurora {
+    background:
+        radial-gradient(720px 480px at 14% 16%, rgba(57, 255, 20, 0.13), transparent 72%),
+        radial-gradient(740px 500px at 86% 24%, rgba(0, 217, 245, 0.11), transparent 74%),
+        radial-gradient(820px 560px at 50% 62%, rgba(0, 245, 160, 0.08), transparent 76%),
+        radial-gradient(620px 440px at 22% 88%, rgba(57, 255, 20, 0.09), transparent 72%) !important;
+    filter: none !important;
+    opacity: 0.94 !important;
+}
+
+/* Hero Visual Mode Switcher Pill (Robot / Radar / 3D Globe) */
+#hero-section .rounded-full.bg-black\/75,
+#hero-section .rounded-full.backdrop-blur-md {
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.10), rgba(7, 17, 12, 0.72) 55%, rgba(4, 10, 7, 0.84)) !important;
+    backdrop-filter: blur(22px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow:
+        0 14px 36px rgba(0, 0, 0, 0.58),
+        0 0 24px rgba(57, 255, 20, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+}
+
+/* Hero Cockpit Telemetry HUD Cards & Globe Frame */
+#view-robot .bg-\[\#090c0e\]\/90,
+#view-radar .bg-\[\#090c0e\]\/90,
+#view-globe .bg-\[\#0a0f12\]\/90,
+#globe-security-badge > div,
+#view-robot .rounded-2xl.border,
+#view-radar .rounded-2xl.border {
+    background: var(--cyber-liquid-bg) !important;
+    backdrop-filter: blur(22px) saturate(185%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(185%) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    box-shadow: var(--cyber-liquid-shadow) !important;
+}
+
+/* Preserve deep-space planet interior on #globe-3d-wrap while making bezel crystal glass */
+#globe-3d-wrap {
+    border: 1px solid rgba(57, 255, 20, 0.32) !important;
+    box-shadow:
+        0 26px 70px rgba(0, 0, 0, 0.78),
+        0 0 54px rgba(0, 255, 65, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.24),
+        inset 0 0 28px rgba(0, 217, 245, 0.08) !important;
+}
+
+/* Static Landing Page Cards & Panels (.bg-parth-surface + Flagship + CyberPro AI + Support + Admissions) */
+#section-journey .bg-parth-surface,
+#section-why .bg-parth-surface,
+#section-programs .bg-parth-surface,
+#section-flagship .bg-parth-surface,
+#section-support .bg-parth-surface,
+#section-admissions .bg-parth-surface,
+#section-cyber-ai .cyber-ai-hero-glass,
+#section-cyber-ai .cyber-ai-card,
+#section-cyber-ai .bg-black\/65,
+#section-contact .bg-parth-surface,
+#section-cta .rounded-2xl,
+#section-cta .rounded-3xl {
+    background: var(--cyber-liquid-bg) !important;
+    backdrop-filter: blur(12px) saturate(165%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(165%) !important;
+    border-color: var(--cyber-liquid-border) !important;
+    box-shadow: var(--cyber-liquid-shadow) !important;
+    transition:
+        transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.3s ease,
+        box-shadow 0.34s ease,
+        background 0.34s ease !important;
+}
+
+#section-journey .bg-parth-surface:hover,
+#section-why .bg-parth-surface:hover,
+#section-programs .bg-parth-surface:hover,
+#section-flagship .bg-parth-surface:hover,
+#section-support .bg-parth-surface:hover,
+#section-admissions .bg-parth-surface:hover,
+#section-cyber-ai .cyber-ai-hero-glass:hover,
+#section-cyber-ai .cyber-ai-card:hover,
+#section-contact .bg-parth-surface:hover {
+    border-color: var(--cyber-liquid-border-hover) !important;
+    box-shadow: var(--cyber-liquid-shadow-hover) !important;
+}
+
+.cyber-ai-btn-prime {
+    background: linear-gradient(135deg, #39ff14 0%, #00f5a0 58%, #00d9f5 115%) !important;
+    color: #031208 !important;
+    border: 1px solid rgba(255, 255, 255, 0.48) !important;
+    box-shadow:
+        0 14px 34px rgba(0, 245, 160, 0.34),
+        0 0 24px rgba(57, 255, 20, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+    cursor: pointer !important;
+    transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.26s ease, filter 0.26s ease !important;
+}
+
+.cyber-ai-btn-prime:hover {
+    transform: translateY(-2px) !important;
+    filter: brightness(1.06);
+    box-shadow:
+        0 18px 42px rgba(0, 245, 160, 0.48),
+        0 0 34px rgba(57, 255, 20, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+}
+
+#login-view button[type="submit"] {
+    transition-property: background-color, border-color, color, box-shadow, transform !important;
+    filter: none !important;
+}
+
+/* Nested Icon Wells, Small Pills, Notification Tiles & Status Chips */
+#section-why .w-10.h-10.rounded,
+#section-programs .w-12.h-12,
+#section-programs .w-10.h-10,
+#section-flagship .bg-black\/60,
+#section-flagship .bg-\[\#090d0b\],
+#section-support .bg-black\/50,
+#section-support .bg-parth-bg,
+#section-admissions .topic-pill,
+#section-admissions .bg-\[\#090d0b\],
+#section-admissions .bg-\[\#050c12\]\/95,
+#section-cyber-ai .bg-gradient-to-r.from-\[\#042416\]\/90 {
+    background: var(--cyber-liquid-pill) !important;
+    backdrop-filter: blur(16px) saturate(175%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(175%) !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.36),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+}
+
+#section-admissions .topic-pill:hover {
+    border-color: rgba(57, 255, 20, 0.62) !important;
+    box-shadow:
+        0 10px 26px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(57, 255, 20, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.32) !important;
+    transform: translateY(-2px);
+}
+
+/* Marquee Curriculum Pills: Specular Crystal Gradient WITHOUT backdrop-filter for 60fps smooth scroll */
+#section-curriculum .animate-marquee > div {
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(10, 28, 18, 0.72) 55%,
+        rgba(5, 14, 10, 0.86) 100%
+    ) !important;
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.42),
+        0 0 18px rgba(57, 255, 20, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+}
+
+/* Hero Stats Row & Subtitle Glass Highlight */
+#hero-section .border-t.border-parth-border\/60,
+#hero-section .border-t.border-parth-border {
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Primary Buttons: Add Crisp Top Specular Glass Rim across Landing Page */
+.cyber-btn-holo-glass {
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(10, 26, 17, 0.58) 55%, rgba(5, 13, 9, 0.75)) !important;
+    backdrop-filter: blur(18px) saturate(185%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(185%) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.44),
+        inset 0 1px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -1px 0 rgba(57, 255, 20, 0.16) !important;
+}
+
+.cyber-btn-holo-glass:hover {
+    border-color: rgba(57, 255, 20, 0.65) !important;
+    box-shadow:
+        0 16px 36px rgba(0, 0, 0, 0.55),
+        0 0 26px rgba(57, 255, 20, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
+}
+
+/* Landing Footer + Floating Scroll-to-Top (#m-top) Liquid Glass */
+#landing-page > footer {
+    background: linear-gradient(
+        180deg,
+        rgba(8, 18, 13, 0.64) 0%,
+        rgba(3, 8, 5, 0.82) 100%
+    ) !important;
+    backdrop-filter: blur(26px) saturate(185%) !important;
+    -webkit-backdrop-filter: blur(26px) saturate(185%) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+}
+
+#m-top {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(10, 26, 17, 0.72)) !important;
+    backdrop-filter: blur(20px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
+    box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.55),
+        0 0 22px rgba(57, 255, 20, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.34) !important;
+}
+
+/* Auth Modal (#login-view), Admissions Modal (#admissions-modal) & Email Inquiry Modal (#email-inquiry-modal) */
+#login-view,
+#admissions-modal,
+#email-inquiry-modal {
+    background: rgba(2, 6, 4, 0.74) !important;
+    backdrop-filter: blur(18px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
+}
+
+#login-view > div.relative,
+#admissions-modal > div,
+#email-inquiry-modal > div {
+    background: var(--cyber-liquid-bg-strong) !important;
+    backdrop-filter: blur(30px) saturate(195%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(195%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.20) !important;
+    box-shadow:
+        0 32px 96px rgba(0, 0, 0, 0.82),
+        0 0 48px rgba(57, 255, 20, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1px 0 rgba(57, 255, 20, 0.14) !important;
+}
+
+#login-view > div.relative > div:first-of-type {
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.06), rgba(6, 16, 11, 0.56)) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+#login-view .bg-black\/60,
+#login-view input:not([type="checkbox"]):not([type="radio"]),
+#login-view select,
+#admissions-modal input:not([type="checkbox"]):not([type="radio"]),
+#admissions-modal select,
+#admissions-modal textarea,
+#email-inquiry-modal input:not([type="checkbox"]):not([type="radio"]),
+#email-inquiry-modal select,
+#email-inquiry-modal textarea {
+    background: rgba(255, 255, 255, 0.045) !important;
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+#login-view input:focus,
+#admissions-modal input:focus,
+#admissions-modal textarea:focus,
+#email-inquiry-modal input:focus,
+#email-inquiry-modal textarea:focus {
+    background: rgba(57, 255, 20, 0.05) !important;
+    border-color: rgba(57, 255, 20, 0.65) !important;
+    box-shadow:
+        0 0 0 3px rgba(57, 255, 20, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Subpages Shared inline Card Classes (about.html, programs.html, ccce.html, contact.html) */
+body:not([data-page="lms"]) :is(
+    .hero-card,
+    .idea-card,
+    .rhythm-card,
+    .audience-box,
+    .hero-point-row,
+    .metric-box,
+    .program-card-main,
+    .program-card-muted,
+    .program-panel,
+    .ccce-portal,
+    .lab-window,
+    .module-explorer,
+    .module-file,
+    .benefit-magazine,
+    .cert-pedestal,
+    .portal-console,
+    .ccce-register-card,
+    .info-card,
+    .help-card,
+    .form-card,
+    .feature-card,
+    .track-card,
+    .contact-card,
+    .story-panel,
+    .legal-document,
+    .legal-toc,
+    .policy-card,
+    .legal-callout,
+    .faq-editorial article
+) {
+    background: var(--cyber-liquid-bg) !important;
+    backdrop-filter: blur(22px) saturate(185%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(185%) !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    box-shadow: var(--cyber-liquid-shadow) !important;
+}
+
+body:not([data-page="lms"]) :is(
+    .idea-card,
+    .rhythm-card,
+    .program-card-main,
+    .program-card-muted,
+    .info-card,
+    .help-card,
+    .feature-card,
+    .track-card,
+    .contact-card,
+    .policy-card
+):hover {
+    border-color: rgba(57, 255, 20, 0.5) !important;
+    box-shadow: var(--cyber-liquid-shadow-hover) !important;
+}
+
+/* Embedded LMS Shell (#lms-app inside index.html) Liquid Glass Alignment */
+#lms-app > aside,
+#lms-app main > header {
+    background: linear-gradient(
+        165deg,
+        rgba(255, 255, 255, 0.075) 0%,
+        rgba(10, 22, 18, 0.66) 46%,
+        rgba(5, 11, 10, 0.84) 100%
+    ) !important;
+    backdrop-filter: blur(26px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(26px) saturate(190%) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+#lms-app .glass-panel,
+#lms-app .glass-card,
+#lms-app .stat-card,
+#lms-app .bg-parth-surface,
+#lms-app .bg-parth-surface-card,
+#lms-app .bg-parth-surface-light,
+#lms-app #lms-cyber-ai-telemetry-box {
+    background: var(--cyber-liquid-bg) !important;
+    backdrop-filter: blur(22px) saturate(185%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(185%) !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    box-shadow: var(--cyber-liquid-shadow) !important;
+}
+
+#lms-app #cyber-ai-chat {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(4, 14, 10, 0.72) 45%, rgba(2, 7, 5, 0.88)) !important;
+    backdrop-filter: blur(26px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(26px) saturate(190%) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+#lms-app .lms-ai-composer-card,
+#lms-app .lms-ai-popover {
+    background: var(--cyber-liquid-bg-strong) !important;
+    backdrop-filter: blur(24px) saturate(195%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(195%) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    #section-journey .bg-parth-surface,
+    #section-why .bg-parth-surface,
+    #section-programs .bg-parth-surface,
+    #section-flagship .bg-parth-surface,
+    #section-support .bg-parth-surface,
+    #section-admissions .bg-parth-surface,
+    #login-view > div.relative,
+    #admissions-modal > div,
+    #email-inquiry-modal > div {
+        background: rgba(9, 14, 11, 0.94) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+}
+
+/* ==========================================================================
+   2GB-RAM & MOBILE 60FPS HARDWARE OPTIMIZATION LAYER (ZERO VISUAL CHANGE)
+   Keeps identical liquid-glass crystal gradients, specular top bevels, and
+   luminous borders while avoiding offscreen layout/paint & stacked mobile blurs.
+   ========================================================================== */
+#section-journey,
+#section-why,
+#section-programs,
+#section-flagship,
+#section-support,
+#section-admissions,
+#section-cyber-ai,
+#section-contact,
+#section-cta,
+#landing-page > footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 560px;
+}
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+    #landing-page > nav,
+    #cyberpro-header-nav,
+    #cyberpro-nav-drawer,
+    #login-view > div.relative,
+    #admissions-modal > div,
+    #email-inquiry-modal > div {
+        backdrop-filter: blur(8px) saturate(145%) !important;
+        -webkit-backdrop-filter: blur(8px) saturate(145%) !important;
+    }
+
+    #login-view,
+    #admissions-modal,
+    #email-inquiry-modal {
+        background: rgba(2, 6, 4, 0.86) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    #section-journey .bg-parth-surface,
+    #section-why .bg-parth-surface,
+    #section-programs .bg-parth-surface,
+    #section-flagship .bg-parth-surface,
+    #section-support .bg-parth-surface,
+    #section-admissions .bg-parth-surface,
+    #section-cyber-ai .cyber-ai-hero-glass,
+    #section-cyber-ai .cyber-ai-card,
+    #section-cyber-ai .bg-black\/65,
+    #section-contact .bg-parth-surface,
+    #section-cta .rounded-2xl,
+    #section-cta .rounded-3xl,
+    #landing-page > footer,
+    #section-why .w-10.h-10.rounded,
+    #section-programs .w-12.h-12,
+    #section-programs .w-10.h-10,
+    #section-flagship .bg-black\/60,
+    #section-flagship .bg-\[\#090d0b\],
+    #section-support .bg-black\/50,
+    #section-support .bg-parth-bg,
+    #section-admissions .topic-pill,
+    #section-admissions .bg-\[\#090d0b\],
+    #section-admissions .bg-\[\#050c12\]\/95,
+    #lms-app .glass-panel,
+    #lms-app .glass-card,
+    #lms-app .stat-card,
+    #lms-app .bg-parth-surface,
+    #lms-app .bg-parth-surface-card,
+    #lms-app .bg-parth-surface-light,
+    body:not([data-page="lms"]) :is(.hero-card, .idea-card, .rhythm-card, .audience-box, .hero-point-row, .metric-box, .program-card-main, .program-card-muted, .program-panel, .ccce-portal, .lab-window, .module-explorer, .module-file, .benefit-magazine, .cert-pedestal, .portal-console, .ccce-register-card, .info-card, .help-card, .form-card, .feature-card, .track-card, .contact-card, .story-panel, .legal-document, .legal-toc, .policy-card, .legal-callout, .faq-editorial article) {
+        background: linear-gradient(
+            155deg,
+            rgba(255, 255, 255, 0.09) 0%,
+            rgba(12, 26, 18, 0.78) 42%,
+            rgba(5, 11, 8, 0.90) 100%
+        ) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    #cyberpro-webgl-canvas {
+        opacity: 0.9;
+    }
+}
+
+

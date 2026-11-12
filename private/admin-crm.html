@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERPRO CRM // Lead Management & Intelligence</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #070a08;
+            color: #ffffff;
+        }
+        .font-mono {
+            font-family: 'Fira Code', monospace;
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #070a08; }
+        ::-webkit-scrollbar-thumb { background: #1e3323; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #39ff14; }
+        .cyber-glass {
+            background: linear-gradient(145deg, rgba(14, 22, 16, 0.88) 0%, rgba(7, 12, 9, 0.94) 100%);
+            border: 1px solid rgba(57, 255, 20, 0.22);
+            backdrop-filter: blur(14px);
+        }
+        .cyber-glass:hover {
+            border-color: rgba(57, 255, 20, 0.4);
+        }
+        .cyber-glow-btn {
+            background: linear-gradient(135deg, #39ff14 0%, #00f5a0 100%);
+            color: #000000;
+            font-weight: 800;
+            box-shadow: 0 0 18px rgba(57, 255, 20, 0.35);
+            transition: all 0.2s ease;
+        }
+        .cyber-glow-btn:hover {
+            box-shadow: 0 0 28px rgba(57, 255, 20, 0.6);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#060907] text-gray-200">
+
+    <!-- Top Admin Navigation Bar -->
+    <header class="border-b border-[#1b2b1e] bg-[#070d09]/90 backdrop-blur-md sticky top-0 z-40 px-6 py-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-xl bg-black border border-[#39ff14]/50 flex items-center justify-center p-1.5 shadow-[0_0_12px_rgba(57,255,20,0.3)]">
+                    <img src="/assets/logo-mark.png" alt="CYBERPRO" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <div class="font-mono text-sm font-black tracking-wider text-white flex items-center gap-2">
+                        <span>CYBERPRO CRM</span>
+                        <span class="text-[9px] px-2 py-0.5 rounded bg-[#39ff14]/15 text-[#39ff14] border border-[#39ff14]/30">ADMIN v2.0</span>
+                    </div>
+                    <div class="font-mono text-[9px] text-gray-400">CUSTOMER INTELLIGENCE & LEAD MANAGEMENT</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <a href="/lms" class="px-3.5 py-1.5 rounded-lg border border-[#1b2b1e] hover:border-[#39ff14]/40 text-xs font-mono text-gray-300 hover:text-white transition-all">
+                &larr; Open Student LMS
+            </a>
+            <button type="button" onclick="exportCSV()" class="cyber-glow-btn px-4 py-1.5 rounded-lg text-xs font-mono flex items-center gap-2 cursor-pointer">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Export CSV</span>
+            </button>
+            <button type="button" onclick="logoutAdmin()" class="px-3 py-1.5 rounded-lg bg-red-950/40 border border-red-800/40 hover:bg-red-900/60 text-red-300 text-xs font-mono transition-all">
+                Sign Out
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex flex-col gap-6">
+
+        <!-- Live KPI Stats Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
+            <div class="cyber-glass rounded-xl p-3.5 flex flex-col gap-1">
+                <span class="font-mono text-[10px] text-gray-400 uppercase tracking-wider">Total Leads</span>
+                <span id="stat-total" class="font-mono text-2xl font-black text-white">-</span>
+                <span class="font-mono text-[8.5px] text-[#39ff14]">All-Time Inquiries</span>
+            </div>
+            <div class="cyber-glass rounded-xl p-3.5 flex flex-col gap-1">
+                <span class="font-mono text-[10px] text-amber-400 uppercase tracking-wider">New</span>
+                <span id="stat-new" class="font-mono text-2xl font-black text-amber-300">-</span>
+                <span class="font-mono text-[8.5px] text-gray-400">Needs Review</span>
+            </div>
+            <div class="cyber-glass rounded-xl p-3.5 flex flex-col gap-1 border-emerald-500/40">
+                <span class="font-mono text-[10px] text-[#39ff14] uppercase tracking-wider">Awaiting Call</span>
+                <span id="stat-awaiting" class="font-mono text-2xl font-black text-[#39ff14]">-</span>
+                <span class="font-mono text-[8.5px] text-emerald-400">Direct Requests</span>
+            </div>
+            <div class="cyber-glass rounded-xl p-3.5 flex flex-col gap-1">
+                <span class="font-mono text-[10px] text-cyan-400 uppercase tracking-wider">Students</span>
+                <span id="stat-students" class="font-mono text-2xl font-black text-cyan-300">-</span>
+                <span class="font-mono text-[8.5px] text-gray-400">College / Freshers</span>
+            </div>
+            <div class="cyber-glass rounded-xl p-3.5 flex flex-col gap-1">
+                <span class="font-mono text-[10px] text-blue-400 uppercase tracking-wider">Contacted</span>
+                <span id="stat-contacted" class="font-mono text-2xl font-black text-blue-300">-</span>
+                <span class="font-mono text-[8.5px] text-gray-400">In Discussion</span>
+            </div>
+            <div class="cyber-glass rounded-xl p-3.5 flex flex-col gap-1 border-[#00f5a0]/40">
+                <span class="font-mono text-[10px] text-[#00f5a0] uppercase tracking-wider">Converted</span>
+                <span id="stat-converted" class="font-mono text-2xl font-black text-[#00f5a0]">-</span>
+                <span class="font-mono text-[8.5px] text-[#00f5a0]">Enrolled CCCE</span>
+            </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="cyber-glass rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
+            <div class="w-full sm:w-80 relative">
+                <svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Search name, phone, email, city, course..."
+                    class="w-full pl-10 pr-4 py-2 rounded-xl bg-black/60 border border-[#1b2b1e] focus:border-[#39ff14] text-xs font-mono text-white outline-none transition-all"
+                    oninput="debounceSearch()"
+                >
+            </div>
+
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+                <select id="status-filter" onchange="fetchEnquiries()" class="px-3.5 py-2 rounded-xl bg-black/60 border border-[#1b2b1e] text-xs font-mono text-white outline-none cursor-pointer">
+                    <option value="">All Statuses</option>
+                    <option value="new">Status: New</option>
+                    <option value="awaiting_contact">Status: Awaiting Contact</option>
+                    <option value="interested_student">Status: Interested Student</option>
+                    <option value="contacted">Status: Contacted</option>
+                    <option value="converted">Status: Converted</option>
+                </select>
+
+                <button type="button" onclick="fetchEnquiries()" class="px-3.5 py-2 rounded-xl bg-[#142317] hover:bg-[#1a311f] border border-[#39ff14]/30 text-xs font-mono text-[#39ff14] transition-all flex items-center gap-1.5 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                    <span>Refresh</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Leads Table -->
+        <div class="cyber-glass rounded-2xl overflow-hidden shadow-2xl">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-[#09110b] border-b border-[#1b2b1e] font-mono text-[10px] text-gray-400 uppercase tracking-wider">
+                        <tr>
+                            <th class="py-3.5 px-4">ID & Date</th>
+                            <th class="py-3.5 px-4">Customer Contact</th>
+                            <th class="py-3.5 px-4">Location / Level</th>
+                            <th class="py-3.5 px-4">Interested Course</th>
+                            <th class="py-3.5 px-4">Score</th>
+                            <th class="py-3.5 px-4">Status</th>
+                            <th class="py-3.5 px-4 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-table-body" class="divide-y divide-[#132015] font-mono">
+                        <tr>
+                            <td colspan="7" class="text-center py-12 text-gray-500 font-mono text-xs">Loading customer enquiries...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Complete Dossier Modal -->
+    <div id="dossier-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="cyber-glass rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden border border-[#39ff14]/40 shadow-[0_0_50px_rgba(0,0,0,0.95)]">
+            
+            <!-- Modal Header -->
+            <div class="px-6 py-4 bg-[#0a140d] border-b border-[#1b2b1e] flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-[#39ff14]/15 border border-[#39ff14]/40 flex items-center justify-center text-[#39ff14] font-black text-sm">
+                        #<span id="modal-id">-</span>
+                    </div>
+                    <div>
+                        <h3 id="modal-name" class="font-mono text-base font-bold text-white">Customer Name</h3>
+                        <p class="font-mono text-[10px] text-gray-400">Created: <span id="modal-date">-</span></p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div id="modal-score-badge" class="font-mono text-xs px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-400 border border-emerald-500/30 font-bold">
+                        Score: 85/100
+                    </div>
+                    <button type="button" onclick="closeDossier()" class="text-gray-400 hover:text-white text-lg p-1">&times;</button>
+                </div>
+            </div>
+
+            <!-- Modal Body (Two-Column Layout) -->
+            <div class="flex-1 overflow-y-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs">
+                
+                <!-- Left Column: Customer Profile & Contact -->
+                <div class="flex flex-col gap-4">
+                    <div class="bg-black/50 border border-[#1b2b1e] rounded-xl p-4 flex flex-col gap-3 font-mono">
+                        <h4 class="text-xs font-bold text-[#39ff14] tracking-wider uppercase border-b border-[#1b2b1e] pb-2">Customer Profile</h4>
+                        
+                        <div class="flex justify-between py-1 border-b border-[#132015]">
+                            <span class="text-gray-400">Phone / WhatsApp:</span>
+                            <span id="modal-phone" class="text-white font-bold">-</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b border-[#132015]">
+                            <span class="text-gray-400">Email:</span>
+                            <span id="modal-email" class="text-white font-bold">-</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b border-[#132015]">
+                            <span class="text-gray-400">City / Location:</span>
+                            <span id="modal-location" class="text-white">-</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b border-[#132015]">
+                            <span class="text-gray-400">Knowledge Level:</span>
+                            <span id="modal-level" class="text-white font-bold">-</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b border-[#132015]">
+                            <span class="text-gray-400">Background:</span>
+                            <span id="modal-background" class="text-white">-</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b border-[#132015]">
+                            <span class="text-gray-400">Learning Goal:</span>
+                            <span id="modal-goal" class="text-white">-</span>
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span class="text-gray-400">Interested Course:</span>
+                            <span id="modal-course" class="text-[#39ff14] font-bold">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Direct Connect Shortcuts -->
+                    <div class="flex items-center gap-2">
+                        <a id="modal-wa-btn" href="#" target="_blank" class="flex-1 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-black font-mono font-bold text-center flex items-center justify-center gap-1.5 transition-all">
+                            <span>WhatsApp Customer</span> &rarr;
+                        </a>
+                        <a id="modal-email-btn" href="#" class="px-4 py-2.5 rounded-xl border border-[#1b2b1e] hover:border-gray-400 font-mono text-gray-300 text-center transition-all">
+                            Email
+                        </a>
+                    </div>
+
+                    <!-- Status & Admin Notes -->
+                    <div class="bg-black/50 border border-[#1b2b1e] rounded-xl p-4 flex flex-col gap-3 font-mono">
+                        <h4 class="text-xs font-bold text-cyan-400 tracking-wider uppercase border-b border-[#1b2b1e] pb-2">CRM Follow-Up & Notes</h4>
+                        
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-[10px] text-gray-400">Lead Status:</label>
+                            <select id="modal-status-select" class="px-3 py-2 rounded-lg bg-[#0e1811] border border-[#1b2b1e] text-xs font-mono text-white outline-none">
+                                <option value="new">New</option>
+                                <option value="awaiting_contact">Awaiting Contact</option>
+                                <option value="interested_student">Interested Student</option>
+                                <option value="contacted">Contacted</option>
+                                <option value="converted">Converted</option>
+                                <option value="archived">Archived</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-[10px] text-gray-400">Internal Admin Notes:</label>
+                            <textarea id="modal-notes" rows="3" placeholder="Add follow-up details, batch preference, call logs..." class="w-full px-3 py-2 rounded-lg bg-[#0e1811] border border-[#1b2b1e] focus:border-[#39ff14] text-xs font-mono text-white outline-none resize-none"></textarea>
+                        </div>
+
+                        <button type="button" onclick="saveDossierUpdates()" class="cyber-glow-btn py-2 rounded-lg text-xs font-mono font-bold cursor-pointer">
+                            Save CRM Updates
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Conversation Summary & Transcript -->
+                <div class="flex flex-col gap-4 font-mono">
+                    <div class="bg-black/50 border border-[#1b2b1e] rounded-xl p-4 flex flex-col gap-2">
+                        <h4 class="text-xs font-bold text-amber-400 tracking-wider uppercase border-b border-[#1b2b1e] pb-2">AI Conversation Summary</h4>
+                        <p id="modal-summary" class="text-gray-300 leading-relaxed text-xs">-</p>
+                    </div>
+
+                    <div class="bg-black/50 border border-[#1b2b1e] rounded-xl p-4 flex-1 flex flex-col gap-2">
+                        <h4 class="text-xs font-bold text-gray-400 tracking-wider uppercase border-b border-[#1b2b1e] pb-2">Full Chat Transcript</h4>
+                        <div id="modal-transcript" class="flex-1 max-h-72 overflow-y-auto flex flex-col gap-2.5 pr-2">
+                            <!-- Messages rendered dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Client Script -->
+    <script>
+        let currentEnquiries = [];
+        let currentSelectedId = null;
+        let searchTimeout = null;
+
+        function debounceSearch() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(fetchEnquiries, 300);
+        }
+
+        async function fetchEnquiries() {
+            const query = (document.getElementById('search-input').value || '').trim();
+            const status = document.getElementById('status-filter').value || '';
+            const url = `/api/admin/crm/enquiries?q=${encodeURIComponent(query)}&status=${encodeURIComponent(status)}`;
+
+            try {
+                const res = await fetch(url);
+                if (res.status === 403 || res.status === 401) {
+                    location.href = '/?login=1';
+                    return;
+                }
+                const data = await res.json();
+                if (data && data.enquiries) {
+                    currentEnquiries = data.enquiries;
+                    renderTable(data.enquiries);
+                    updateKPIs(data.stats || {});
+                }
+            } catch (err) {
+                console.error("Failed to fetch enquiries:", err);
+            }
+        }
+
+        function updateKPIs(stats) {
+            document.getElementById('stat-total').innerText = stats.total || currentEnquiries.length || 0;
+            document.getElementById('stat-new').innerText = stats.new || 0;
+            document.getElementById('stat-awaiting').innerText = stats.awaiting_contact || 0;
+            document.getElementById('stat-students').innerText = stats.interested_student || 0;
+            document.getElementById('stat-contacted').innerText = stats.contacted || 0;
+            document.getElementById('stat-converted').innerText = stats.converted || 0;
+        }
+
+        function renderTable(leads) {
+            const tbody = document.getElementById('leads-table-body');
+            if (!leads || leads.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-12 text-gray-500 font-mono text-xs">No customer inquiries found matching filter.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = leads.map(l => {
+                const dateStr = l.created_at ? new Date(l.created_at * 1000).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '-';
+                const name = l.full_name || 'Anonymous Visitor';
+                const phone = l.phone || '-';
+                const email = l.email || '';
+                const location = l.location || 'India';
+                const level = l.knowledge_level || 'Beginner';
+                const course = l.interested_course || 'CCCE Flagship';
+                const score = l.lead_score || 50;
+                
+                let statusBadge = '';
+                if (l.status === 'awaiting_contact') {
+                    statusBadge = '<span class="px-2 py-0.5 rounded text-[10px] bg-emerald-950 text-[#39ff14] border border-[#39ff14]/40 animate-pulse font-bold">Awaiting Call</span>';
+                } else if (l.status === 'converted') {
+                    statusBadge = '<span class="px-2 py-0.5 rounded text-[10px] bg-green-900/60 text-[#00f5a0] border border-[#00f5a0]/40 font-bold">Converted</span>';
+                } else if (l.status === 'contacted') {
+                    statusBadge = '<span class="px-2 py-0.5 rounded text-[10px] bg-blue-950 text-blue-300 border border-blue-600/40">Contacted</span>';
+                } else if (l.status === 'interested_student') {
+                    statusBadge = '<span class="px-2 py-0.5 rounded text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-500/40">Student</span>';
+                } else {
+                    statusBadge = '<span class="px-2 py-0.5 rounded text-[10px] bg-amber-950/60 text-amber-300 border border-amber-600/40">New</span>';
+                }
+
+                const waLink = phone !== '-' ? `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=Hi%20${encodeURIComponent(name)}%2C%20this%20is%20CYBERPRO%20Admissions%20following%20up%20on%20your%20cybersecurity%20inquiry.` : '#';
+
+                return `
+                    <tr class="hover:bg-white/[0.02] transition-colors">
+                        <td class="py-3 px-4 text-gray-400">
+                            <span class="text-white font-bold">#${l.id}</span>
+                            <div class="text-[10px]">${dateStr}</div>
+                        </td>
+                        <td class="py-3 px-4">
+                            <div class="text-white font-bold flex items-center gap-1.5">
+                                <span>${name}</span>
+                                ${phone !== '-' ? '<span class="w-1.5 h-1.5 rounded-full bg-[#39ff14]"></span>' : ''}
+                            </div>
+                            <div class="text-[10px] text-emerald-400">${phone}</div>
+                            ${email ? `<div class="text-[10px] text-gray-400">${email}</div>` : ''}
+                        </td>
+                        <td class="py-3 px-4">
+                            <div class="text-gray-300">${location}</div>
+                            <div class="text-[10px] text-gray-500">${level} • ${l.background || 'General'}</div>
+                        </td>
+                        <td class="py-3 px-4 text-[#39ff14] font-semibold">${course}</td>
+                        <td class="py-3 px-4">
+                            <span class="font-bold ${score >= 70 ? 'text-[#39ff14]' : 'text-gray-300'}">${score}</span><span class="text-gray-500 text-[10px]">/100</span>
+                        </td>
+                        <td class="py-3 px-4">${statusBadge}</td>
+                        <td class="py-3 px-4 text-right">
+                            <div class="flex items-center justify-end gap-1.5">
+                                ${phone !== '-' ? `<a href="${waLink}" target="_blank" class="p-1.5 rounded-lg bg-emerald-950 hover:bg-emerald-900 border border-emerald-600/40 text-emerald-300" title="Quick WhatsApp"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.316 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.818-.981z"/></svg></a>` : ''}
+                                <button type="button" onclick="openDossier(${l.id})" class="px-2.5 py-1.5 rounded-lg bg-[#18281b] hover:bg-[#223926] border border-[#39ff14]/30 text-white font-mono text-[10.5px] transition-all cursor-pointer">
+                                    Dossier &rarr;
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        async function openDossier(id) {
+            currentSelectedId = id;
+            try {
+                const res = await fetch(`/api/admin/crm/enquiry/${id}`);
+                const data = await res.json();
+                if (!data || !data.enquiry) return;
+                const e = data.enquiry;
+
+                document.getElementById('modal-id').innerText = e.id;
+                document.getElementById('modal-name').innerText = e.full_name || 'Visitor';
+                document.getElementById('modal-date').innerText = new Date(e.created_at * 1000).toLocaleString();
+                document.getElementById('modal-score-badge').innerText = `Score: ${e.lead_score || 50}/100`;
+
+                document.getElementById('modal-phone').innerText = e.phone || 'Not provided';
+                document.getElementById('modal-email').innerText = e.email || 'Not provided';
+                document.getElementById('modal-location').innerText = e.location || 'India';
+                document.getElementById('modal-level').innerText = e.knowledge_level || 'Beginner';
+                document.getElementById('modal-background').innerText = e.background || 'Student';
+                document.getElementById('modal-goal').innerText = e.learning_goal || 'Skills & Career';
+                document.getElementById('modal-course').innerText = e.interested_course || 'CCCE Flagship';
+
+                document.getElementById('modal-status-select').value = e.status || 'new';
+                document.getElementById('modal-notes').value = e.admin_notes || '';
+                document.getElementById('modal-summary').innerText = e.conversation_summary || e.requirements || 'No summary recorded yet.';
+
+                // Action links
+                const phoneClean = (e.phone || '').replace(/[^0-9]/g, '');
+                const waBtn = document.getElementById('modal-wa-btn');
+                if (phoneClean) {
+                    waBtn.href = `https://wa.me/${phoneClean}?text=Hi%20${encodeURIComponent(e.full_name || 'there')}%2C%20this%20is%20Parth%20Rathod%20from%20CYBERPRO%20Defense%20Academy.`;
+                    waBtn.classList.remove('opacity-40', 'pointer-events-none');
+                } else {
+                    waBtn.href = '#';
+                    waBtn.classList.add('opacity-40', 'pointer-events-none');
+                }
+
+                const emailBtn = document.getElementById('modal-email-btn');
+                if (e.email) {
+                    emailBtn.href = `mailto:${e.email}?subject=CYBERPRO%20Cybersecurity%20Program%20Information`;
+                    emailBtn.classList.remove('opacity-40', 'pointer-events-none');
+                } else {
+                    emailBtn.href = '#';
+                    emailBtn.classList.add('opacity-40', 'pointer-events-none');
+                }
+
+                // Render transcript
+                let history = [];
+                try {
+                    history = JSON.parse(e.conversation_history || '[]');
+                } catch(err) { history = []; }
+
+                const tContainer = document.getElementById('modal-transcript');
+                if (history && history.length > 0) {
+                    tContainer.innerHTML = history.map(m => `
+                        <div class="p-2.5 rounded-lg text-[11px] ${m.role === 'user' ? 'bg-emerald-950/40 border border-emerald-500/20 text-white ml-4' : 'bg-black/40 border border-[#1b2b1e] text-gray-300 mr-4'}">
+                            <span class="text-[9px] font-bold ${m.role === 'user' ? 'text-[#39ff14]' : 'text-cyan-400'} uppercase">${m.role}:</span>
+                            <div class="mt-1 leading-relaxed">${(m.content || '').replace(/\n/g, '<br>')}</div>
+                        </div>
+                    `).join('');
+                } else {
+                    tContainer.innerHTML = `<p class="text-gray-500 text-xs italic py-4">No conversational chat history recorded for this enquiry.</p>`;
+                }
+
+                const modal = document.getElementById('dossier-modal');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } catch (err) {
+                console.error("Error opening dossier:", err);
+            }
+        }
+
+        function closeDossier() {
+            const modal = document.getElementById('dossier-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            currentSelectedId = null;
+        }
+
+        async function saveDossierUpdates() {
+            if (!currentSelectedId) return;
+            const newStatus = document.getElementById('modal-status-select').value;
+            const newNotes = document.getElementById('modal-notes').value;
+
+            try {
+                const res = await fetch(`/api/admin/crm/enquiry/${currentSelectedId}/update`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus, admin_notes: newNotes })
+                });
+                const data = await res.json();
+                if (data && data.ok) {
+                    alert("CRM record updated successfully!");
+                    closeDossier();
+                    fetchEnquiries();
+                } else {
+                    alert("Failed to update: " + (data.error || "Unknown error"));
+                }
+            } catch (err) {
+                alert("Connection error updating CRM record.");
+            }
+        }
+
+        function exportCSV() {
+            location.href = '/api/admin/crm/export-csv';
+        }
+
+        async function logoutAdmin() {
+            await fetch('/api/logout', { method: 'POST' });
+            location.href = '/';
+        }
+
+        // Initialize on load
+        fetchEnquiries();
+    </script>
+</body>
+</html>
